@@ -1,7 +1,9 @@
 import user from './user'
+import appVersion from './version'
 
 const allReducers = {
   user,
+  appVersion,
 }
 
 const reducer = (state = allReducers, action) => {

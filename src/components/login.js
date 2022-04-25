@@ -1,21 +1,57 @@
-import React, { Component } from 'react'
+import React, { Component, version } from 'react'
+import { connect } from 'react-redux'
 
-class login extends Component {
+class Login extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      useremail: '',
+      userpassword: '',
+    }
+  }
   render() {
     return (
       <>
         <div>
-          <h1>Login</h1>
+          <h1>Login to SocialWeb</h1> <h3>v{this.props.version}</h3>
           <br />
-          <input placeholder="write email" />
+          <input
+            value={this.state.useremail}
+            onChange={(event) =>
+              this.setState({ useremail: event.target.value })
+            }
+            placeholder="write email"
+          />
           <br />
-          <input placeholder="write password" />
+          <input
+            value={this.state.userpassword}
+            onChange={(event) =>
+              this.setState({ userpassword: event.target.value })
+            }
+            placeholder="write password"
+          />
           <br />
-          <button>Login</button>
+          <button onClick={() => console.log(this.state.useremail)}>
+            Login
+          </button>
+        </div>
+        <div>
+          <br />
+          <br />
+          <br />
+          <br />
+          <button>get inf</button>
         </div>
       </>
     )
   }
 }
 
-export default login
+//REDUX CONTAINER
+function mapStateToProps(state) {
+  return {
+    version: state.appVersion.version,
+  }
+}
+
+export default connect(mapStateToProps)(Login)
