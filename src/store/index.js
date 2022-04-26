@@ -1,9 +1,11 @@
 import user from './user'
 import appVersion from './version'
+import firebaseConfig from './firebase/config'
 
 const allReducers = {
   user,
   appVersion,
+  firebaseConfig,
 }
 
 const reducer = (state = allReducers, action) => {
