@@ -25,6 +25,7 @@ class Login extends Component {
         .then((userCredential) => {
           const user = userCredential.user
           console.log('Login successful!')
+          this.props.handleUserLogin(user)
         })
         .catch((error) => {
           const errorCode = error.code
