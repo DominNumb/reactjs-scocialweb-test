@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/reactjs-socialweb-test/static/css/main.964fdded.css",
-    "main.js": "/reactjs-socialweb-test/static/js/main.38c5460e.js",
-    "static/js/787.f289c0a7.chunk.js": "/reactjs-socialweb-test/static/js/787.f289c0a7.chunk.js",
-    "index.html": "/reactjs-socialweb-test/index.html",
-    "main.964fdded.css.map": "/reactjs-socialweb-test/static/css/main.964fdded.css.map",
-    "main.38c5460e.js.map": "/reactjs-socialweb-test/static/js/main.38c5460e.js.map",
-    "787.f289c0a7.chunk.js.map": "/reactjs-socialweb-test/static/js/787.f289c0a7.chunk.js.map"
+    "main.css": "/reactjs-scocialweb-test/static/css/main.964fdded.css",
+    "main.js": "/reactjs-scocialweb-test/static/js/main.d26b3375.js",
+    "static/js/787.f289c0a7.chunk.js": "/reactjs-scocialweb-test/static/js/787.f289c0a7.chunk.js",
+    "index.html": "/reactjs-scocialweb-test/index.html",
+    "main.964fdded.css.map": "/reactjs-scocialweb-test/static/css/main.964fdded.css.map",
+    "main.d26b3375.js.map": "/reactjs-scocialweb-test/static/js/main.d26b3375.js.map",
+    "787.f289c0a7.chunk.js.map": "/reactjs-scocialweb-test/static/js/787.f289c0a7.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.964fdded.css",
-    "static/js/main.38c5460e.js"
+    "static/js/main.d26b3375.js"
   ]
 }
