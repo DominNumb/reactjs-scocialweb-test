@@ -9,15 +9,12 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 class Login extends Component {
   constructor(props) {
     super(props)
-    this.errInput = React.createRef()
-    this.focusErrInput = this.focusErrInput.bind(this)
     this.state = {
       useremail: '',
       userpassword: '',
+      errormsg: '',
+      loginmsg: '',
     }
-  }
-  focusErrInput() {
-    this.errInput.current.focus()
   }
 
   render() {
@@ -29,6 +26,7 @@ class Login extends Component {
         .then((userCredential) => {
           const user = userCredential.user
           console.log('Login successful!')
+          this.setState({ errormsg: '' })
           this.props.handleUserLogin(user)
           this.setState({ userpassword: '' })
         })
@@ -36,13 +34,16 @@ class Login extends Component {
           const errorCode = error.code
           switch (error.code) {
             case 'auth/invalid-email':
-              this.errInput.current.value = 'Invalid email!'
+              this.setState({ errormsg: 'Invalid email!' })
               break
             case 'auth/user-not-found':
-              this.errInput.current.value = 'User not found!'
+              this.setState({ errormsg: 'User not found!' })
               break
             case 'auth/wrong-password':
-              this.errInput.current.value = 'Wrong password!'
+              this.setState({ errormsg: 'Wrong password!' })
+              break
+            case 'auth/internal-error':
+              this.setState({ errormsg: 'Internal error' })
               break
           }
           console.log('[ERROR] ' + errorCode)
@@ -82,15 +83,7 @@ class Login extends Component {
         </div>
         <div>
           <br />
-          <center>
-            <input
-              type={'text'}
-              style={{ background: 'white', border: 'none', color: 'red' }}
-              ref={this.errInput}
-              value=""
-              disabled
-            />
-          </center>
+          <span style={{ color: 'red' }}>{this.state.errormsg}</span>
           <br />
           <h3>v{this.props.version}</h3>
         </div>
