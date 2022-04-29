@@ -1,28 +1,26 @@
-import React, { Component, version } from 'react'
+import React, { Component } from 'react'
 
 //REDUX
 import { connect } from 'react-redux'
 
 //FIREBASE
-import { initializeApp } from 'firebase/app'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 
 class Login extends Component {
   constructor(props) {
     super(props)
-    this.infInput = React.createRef()
-    this.focusInfInput = this.focusInfInput.bind(this)
+    this.errInput = React.createRef()
+    this.focusErrInput = this.focusErrInput.bind(this)
     this.state = {
       useremail: '',
       userpassword: '',
     }
   }
-  focusInfInput() {
-    this.infInput.current.focus()
+  focusErrInput() {
+    this.errInput.current.focus()
   }
 
   render() {
-    const app = initializeApp(this.props.firebaseConfig)
     const auth = getAuth()
 
     //Login function
@@ -36,27 +34,25 @@ class Login extends Component {
         })
         .catch((error) => {
           const errorCode = error.code
-          const errorMessage = error.message
-          console.log('Error')
+          switch (error.code) {
+            case 'auth/invalid-email':
+              this.errInput.current.value = 'Invalid email!'
+              break
+            case 'auth/user-not-found':
+              this.errInput.current.value = 'User not found!'
+              break
+            case 'auth/wrong-password':
+              this.errInput.current.value = 'Wrong password!'
+              break
+          }
+          console.log('[ERROR] ' + errorCode)
         })
-    }
-
-    //Info Button Function
-    const handleInf = () => {
-      console.log(this.props.user)
-      if (!this.props.user.email) {
-        console.log('You are not logged in!')
-        this.infInput.current.value = 'You are not logged in!'
-      } else {
-        console.log('You are signed In!')
-        this.infInput.current.value = 'You are signed In!'
-      }
     }
 
     return (
       <>
         <div>
-          <h1>Login to SocialWeb</h1> <h3>v{this.props.version}</h3>
+          <h1>Login to SocialWeb</h1>
           <br />
           <input
             value={this.state.useremail}
@@ -86,26 +82,17 @@ class Login extends Component {
         </div>
         <div>
           <br />
+          <center>
+            <input
+              type={'text'}
+              style={{ background: 'white', border: 'none', color: 'red' }}
+              ref={this.errInput}
+              value=""
+              disabled
+            />
+          </center>
           <br />
-          <br />
-          <br />
-          <hr />
-          <button onClick={() => handleInf()}>get inf</button>
-          <br />
-          <input
-            type={'text'}
-            style={{ background: 'white', border: 'none' }}
-            ref={this.infInput}
-            value=""
-            disabled
-          />
-          <hr />
-          <br />
-          <br />
-          <br />
-          <br />
-          <div>email: test@gmail.com</div>
-          <div>password: test123</div>
+          <h3>v{this.props.version}</h3>
         </div>
       </>
     )
