@@ -25,7 +25,7 @@ class Login extends Component {
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user
-          console.log('Login successful!')
+          console.log('[INFO] Login successful!')
           this.setState({ errormsg: '' })
           this.props.handleUserLogin(user)
           this.setState({ userpassword: '' })
