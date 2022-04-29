@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/reactjs-scocialweb-test/static/css/main.964fdded.css",
-    "main.js": "/reactjs-scocialweb-test/static/js/main.d26b3375.js",
+    "main.js": "/reactjs-scocialweb-test/static/js/main.a181294f.js",
     "static/js/787.f289c0a7.chunk.js": "/reactjs-scocialweb-test/static/js/787.f289c0a7.chunk.js",
     "index.html": "/reactjs-scocialweb-test/index.html",
     "main.964fdded.css.map": "/reactjs-scocialweb-test/static/css/main.964fdded.css.map",
-    "main.d26b3375.js.map": "/reactjs-scocialweb-test/static/js/main.d26b3375.js.map",
+    "main.a181294f.js.map": "/reactjs-scocialweb-test/static/js/main.a181294f.js.map",
     "787.f289c0a7.chunk.js.map": "/reactjs-scocialweb-test/static/js/787.f289c0a7.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.964fdded.css",
-    "static/js/main.d26b3375.js"
+    "static/js/main.a181294f.js"
   ]
 }
