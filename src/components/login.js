@@ -13,7 +13,6 @@ class Login extends Component {
       useremail: '',
       userpassword: '',
       errormsg: '',
-      loginmsg: '',
     }
   }
 
@@ -50,6 +49,7 @@ class Login extends Component {
         })
     }
 
+    //Login return
     return (
       <div className="LoginForm">
         <div>
