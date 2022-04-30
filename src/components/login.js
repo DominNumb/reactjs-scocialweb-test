@@ -79,6 +79,7 @@ class Login extends Component {
           <br />
           <a
             className="button-27"
+            style={{ width: 200 }}
             onClick={() =>
               handleLogin(this.state.useremail, this.state.userpassword)
             }
