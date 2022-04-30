@@ -20,7 +20,7 @@ class Login extends Component {
     const auth = getAuth()
 
     //Login function
-    const handleLogin = (email, password) => {
+    const handleLogin = async (email, password) => {
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user
