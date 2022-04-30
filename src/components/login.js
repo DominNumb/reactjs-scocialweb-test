@@ -75,6 +75,8 @@ class Login extends Component {
             placeholder="Type password"
           />
           <br />
+          <br />
+          <br />
           <button
             className="button-27"
             onClick={() =>
