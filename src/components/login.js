@@ -96,6 +96,9 @@ class Login extends Component {
         <br />
         <br />
         <br />
+        <br />
+        <br />
+        <br />
         <div>
           <span>You don't have an account? </span>
           <span
@@ -107,7 +110,7 @@ class Login extends Component {
         </div>
         <br />
         <div className="LoginLabel">
-          <span>v{this.props.version}</span>
+          <span>v{this.props.version} by DominNumb</span>
         </div>
       </div>
     )
