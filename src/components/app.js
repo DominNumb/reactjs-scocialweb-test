@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import '../App.css'
+import '../styles/app.css'
 import Login from './login'
 
 //REDUX
@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 
 //FIREBASE
 import { initializeApp } from 'firebase/app'
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import { getAuth } from 'firebase/auth'
 
 class App extends Component {
   constructor(props) {
@@ -18,7 +18,10 @@ class App extends Component {
     const auth = getAuth()
     return (
       <div className="App">
-        <Login />
+        <div>
+          <h1>Social Web</h1>
+          <Login />
+        </div>
       </div>
     )
   }
