@@ -48,6 +48,7 @@ class Register extends Component {
         })
     }
 
+    //MAIN return
     return (
       <div className="LoginForm">
         <div>
