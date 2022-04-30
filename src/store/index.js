@@ -15,6 +15,10 @@ const reducer = (state = allReducers, action) => {
       newState.user = action.data
       return newState
       break
+    case 'USER_LOGOUT':
+      newState.user = { user: [null] }
+      return newState
+      break
   }
   return newState
 }
