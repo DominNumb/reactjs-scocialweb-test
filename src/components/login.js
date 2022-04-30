@@ -53,7 +53,7 @@ class Login extends Component {
     return (
       <div className="LoginForm">
         <div>
-          <h1>Login</h1>
+          <h1>Login to Social Web</h1>
           <br />
           <input
             value={this.state.useremail}

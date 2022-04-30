@@ -19,7 +19,6 @@ class App extends Component {
     return (
       <div className="App">
         <div>
-          <h1>Social Web</h1>
           <Login />
         </div>
       </div>
