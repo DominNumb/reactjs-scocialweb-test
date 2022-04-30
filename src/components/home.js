@@ -32,6 +32,7 @@ class Home extends Component {
       <>
         <h1>Home screen</h1>
         <button
+          className="button-27"
           onClick={() =>
             handleLogout(this.props.user, this.props.handleUserLogedOut)
           }
