@@ -56,6 +56,7 @@ class Login extends Component {
           <h1 className="LogoLabel">Login to Social Web</h1>
           <br />
           <input
+            className="LoginInput"
             value={this.state.useremail}
             onChange={(event) =>
               this.setState({ useremail: event.target.value })
@@ -65,6 +66,7 @@ class Login extends Component {
           />
           <br />
           <input
+            className="LoginInput"
             value={this.state.userpassword}
             onChange={(event) =>
               this.setState({ userpassword: event.target.value })
@@ -81,11 +83,13 @@ class Login extends Component {
             Login
           </button>
         </div>
-        <div>
-          <br />
+        <br />
+        <div className="LoginLabel">
           <span style={{ color: '#b71c1c' }}>{this.state.errormsg}</span>
-          <br />
-          <a style={{ height: 100 }}>v{this.props.version}</a>
+        </div>
+        <br />
+        <div className="LoginLabel">
+          <a>v{this.props.version}</a>
         </div>
       </div>
     )
