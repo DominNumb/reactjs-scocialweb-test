@@ -53,7 +53,7 @@ class Login extends Component {
     return (
       <div className="LoginForm">
         <div>
-          <h1>Login to Social Web</h1>
+          <h1 className="LogoLabel">Login to Social Web</h1>
           <br />
           <input
             value={this.state.useremail}
@@ -85,7 +85,7 @@ class Login extends Component {
           <br />
           <span style={{ color: '#b71c1c' }}>{this.state.errormsg}</span>
           <br />
-          <h3>v{this.props.version}</h3>
+          <a style={{ height: 100 }}>v{this.props.version}</a>
         </div>
       </div>
     )
