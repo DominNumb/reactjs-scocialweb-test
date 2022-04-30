@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-//Redux
+//REDUX
 import { connect } from 'react-redux'
 import { getAuth } from 'firebase/auth'
 
@@ -9,11 +9,33 @@ class Home extends Component {
     super(props)
     this.state = {}
   }
+
+  //MAIN HOME
   render() {
+    const auth = getAuth()
+
+    //LogOut FUNCTION
+    function handleLogout(user, onLogout) {
+      onLogout(user)
+      auth
+        .signOut()
+        .then(function () {
+          console.log('[INFO] User LogedOut')
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+    }
+
+    //MAIN RETURN
     return (
       <>
         <h1>Home screen</h1>
-        <button onClick={() => this.props.handleUserLogedOut(this.props.user)}>
+        <button
+          onClick={() =>
+            handleLogout(this.props.user, this.props.handleUserLogedOut)
+          }
+        >
           logOut
         </button>
       </>
@@ -31,16 +53,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     handleUserLogedOut: (user) => {
-      const auth = getAuth()
       dispatch({ type: 'USER_LOGOUT', data: user })
-      auth
-        .signOut()
-        .then(function () {
-          console.log('[INFO] User LogedOut')
-        })
-        .catch(function (error) {
-          console.log(error)
-        })
     },
   }
 }
