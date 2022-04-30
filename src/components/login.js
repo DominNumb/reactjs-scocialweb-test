@@ -92,6 +92,12 @@ class Login extends Component {
           <span style={{ color: '#b71c1c' }}>{this.state.errormsg}</span>
         </div>
         <br />
+        <br />
+        <div>
+          <span>You don't have an account? </span>
+          <span>Register here!</span>
+        </div>
+        <br />
         <div className="LoginLabel">
           <a>v{this.props.version}</a>
         </div>

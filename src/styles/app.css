@@ -34,12 +34,19 @@
   background-color: #121212;
   margin: 10px;
   color: #f1f1fc;
-  border: 0;
+  border: none;
+  border-bottom: 2px solid #d206d67c;
   font-size: large;
+}
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgba(57, 54, 57, 0.805);
+  opacity: 1; /* Firefox */
 }
 .LoginLabel {
   margin: 5px;
 }
+
 /* BUTTON DOWNLOADED for login */
 .button-27 {
   appearance: none;
