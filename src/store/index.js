@@ -16,15 +16,12 @@ const reducer = (state = allReducers, action) => {
     case 'USER_LOGIN':
       newState.user = action.data
       return newState
-
     case 'USER_LOGOUT':
       newState.user = { user: [null] }
       return newState
-
     case 'USER_SCREEN':
       newState.selectedScreen.slscreen = action.data
       return newState
-
     default:
       break
   }
