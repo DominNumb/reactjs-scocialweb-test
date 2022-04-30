@@ -44,6 +44,8 @@ class Login extends Component {
             case 'auth/internal-error':
               this.setState({ errormsg: 'Internal error' })
               break
+            default:
+              break
           }
           console.log('[ERROR] ' + errorCode)
         })
@@ -77,7 +79,7 @@ class Login extends Component {
           <br />
           <br />
           <br />
-          <a
+          <span
             className="button-27"
             style={{ width: 200 }}
             onClick={() =>
@@ -85,7 +87,7 @@ class Login extends Component {
             }
           >
             Login
-          </a>
+          </span>
         </div>
         <br />
         <div className="LoginLabel">
@@ -95,11 +97,16 @@ class Login extends Component {
         <br />
         <div>
           <span>You don't have an account? </span>
-          <span>Register here!</span>
+          <span
+            style={{ color: 'purple', fontWeight: 'bold' }}
+            onClick={() => console.log('Register new account please')}
+          >
+            Register here!
+          </span>
         </div>
         <br />
         <div className="LoginLabel">
-          <a>v{this.props.version}</a>
+          <span>v{this.props.version}</span>
         </div>
       </div>
     )
