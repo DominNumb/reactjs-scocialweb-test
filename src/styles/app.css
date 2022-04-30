@@ -13,6 +13,8 @@
   font-size: 19;
   margin: 10;
 }
+
+/* LOGIN */
 .LoginForm {
   flex: 1;
   min-height: 80vh;
@@ -38,7 +40,7 @@
 .LoginLabel {
   margin: 5px;
 }
-/* button downloaded with lighting rgb */
+/* BUTTON DOWNLOADED for login */
 .button-27 {
   appearance: none;
   background-color: #121212;
@@ -67,16 +69,13 @@
   width: 100%;
   will-change: transform;
 }
-
 .button-27:disabled {
   pointer-events: none;
 }
-
 .button-27:hover {
   box-shadow: rgba(214, 24, 232, 0.25) 0 8px 15px;
   transform: translateY(-2px);
 }
-
 .button-27:active {
   box-shadow: none;
   transform: translateY(0);
