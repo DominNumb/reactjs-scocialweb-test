@@ -15,12 +15,13 @@ class Home extends Component {
     const auth = getAuth()
 
     //LogOut FUNCTION
-    function handleLogout(user, onLogout) {
+    function handleLogout(user, onLogout, onScreen) {
       onLogout(user)
       auth
         .signOut()
         .then(function () {
           console.log('[INFO] User LogedOut')
+          onScreen('login')
         })
         .catch(function (error) {
           console.log(error)
@@ -34,7 +35,11 @@ class Home extends Component {
         <button
           className="button-27"
           onClick={() =>
-            handleLogout(this.props.user, this.props.handleUserLogedOut)
+            handleLogout(
+              this.props.user,
+              this.props.handleUserLogedOut,
+              this.props.handleSelectScreen,
+            )
           }
         >
           logOut
@@ -55,6 +60,9 @@ function mapDispatchToProps(dispatch) {
   return {
     handleUserLogedOut: (user) => {
       dispatch({ type: 'USER_LOGOUT', data: user })
+    },
+    handleSelectScreen: (screen) => {
+      dispatch({ type: 'USER_SCREEN', data: screen })
     },
   }
 }

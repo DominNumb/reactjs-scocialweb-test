@@ -1,10 +1,12 @@
 import user from './user'
 import appVersion from './version'
 import firebaseConfig from './firebase/config'
+import selectedScreen from './selectedScreen'
 
 const allReducers = {
   user,
   appVersion,
+  selectedScreen,
   firebaseConfig,
 }
 
@@ -17,6 +19,10 @@ const reducer = (state = allReducers, action) => {
       break
     case 'USER_LOGOUT':
       newState.user = { user: [null] }
+      return newState
+      break
+    case 'USER_SCREEN':
+      newState.selectedScreen.slscreen = action.data
       return newState
       break
   }

@@ -27,6 +27,7 @@ class Login extends Component {
           console.log('[INFO] Login successful!')
           this.setState({ errormsg: '' })
           this.props.handleUserLogin(user)
+          this.props.handleSelectScreen('home')
           this.setState({ userpassword: '' })
         })
         .catch((error) => {
@@ -128,6 +129,9 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     handleUserLogin: (user) => dispatch({ type: 'USER_LOGIN', data: user }),
+    handleSelectScreen: (screen) => {
+      dispatch({ type: 'USER_SCREEN', data: screen })
+    },
   }
 }
 
