@@ -78,7 +78,11 @@ class Login extends Component {
           />
           <br />
           <br />
+          <div className="LoginLabel">
+            <span style={{ color: '#b71c1c' }}>{this.state.errormsg}</span>
+          </div>
           <br />
+
           <span
             className="button-27"
             style={{ width: 200 }}
@@ -90,9 +94,6 @@ class Login extends Component {
           </span>
         </div>
         <br />
-        <div className="LoginLabel">
-          <span style={{ color: '#b71c1c' }}>{this.state.errormsg}</span>
-        </div>
         <br />
         <br />
         <div>
