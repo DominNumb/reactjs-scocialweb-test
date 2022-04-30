@@ -21,7 +21,7 @@ class Login extends Component {
 
     //Login function
     const handleLogin = async (email, password) => {
-      signInWithEmailAndPassword(auth, email, password)
+      await signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user
           console.log('[INFO] Login successful!')
