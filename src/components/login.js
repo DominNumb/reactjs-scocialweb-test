@@ -28,7 +28,6 @@ class Login extends Component {
           this.setState({ errormsg: '' })
           this.props.handleUserLogin(user)
           this.props.handleSelectScreen('home')
-          this.setState({ userpassword: '' })
         })
         .catch((error) => {
           const errorCode = error.code
