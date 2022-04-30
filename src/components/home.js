@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 
+//Redux
+import { connect } from 'react-redux'
+
 class Home extends Component {
   constructor(props) {
     super(props)
@@ -9,9 +12,23 @@ class Home extends Component {
     return (
       <>
         <h1>Home screen</h1>
+        <button>logOut</button>
       </>
     )
   }
 }
 
-export default Home
+//REDUX CONTAINER
+function mapStateToProps(state) {
+  return {
+    firebaseConfig: state.firebaseConfig,
+    user: state.user,
+  }
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    handleUserLogedOut: (user) => dispatch({ type: 'USER_LOGOUT', data: user }),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
