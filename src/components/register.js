@@ -74,7 +74,9 @@ class Register extends Component {
 
         <div className="LoginForm">
           <div>
-            <h1 className="LogoLabel">Register</h1>
+            <h1 className="LogoLabel" style={{ cursor: 'default' }}>
+              Register
+            </h1>
             <br />
             <input
               className="LoginInput"
@@ -118,7 +120,7 @@ class Register extends Component {
           <br />
           <br />
           <div>
-            <span>You have an account? </span>
+            <span style={{ cursor: 'default' }}>You have an account? </span>
             <span
               style={{
                 color: 'purple',

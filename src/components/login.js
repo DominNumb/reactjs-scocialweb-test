@@ -55,7 +55,9 @@ class Login extends Component {
     return (
       <div className="LoginForm">
         <div>
-          <h1 className="LogoLabel">Login to Social Web</h1>
+          <h1 className="LogoLabel" style={{ cursor: 'default' }}>
+            Login to Social Web
+          </h1>
           <br />
           <input
             className="LoginInput"
@@ -100,7 +102,7 @@ class Login extends Component {
         <br />
         <br />
         <div>
-          <span>You don't have an account? </span>
+          <span style={{ cursor: 'default' }}>You don't have an account? </span>
           <span
             style={{ color: 'purple', fontWeight: 'bold', cursor: 'pointer' }}
             onClick={() => this.props.handleSelectScreen('register')}
@@ -109,7 +111,7 @@ class Login extends Component {
           </span>
         </div>
         <br />
-        <div className="LoginLabel">
+        <div className="LoginLabel" style={{ cursor: 'default' }}>
           <span>v{this.props.version} by DominNumb</span>
         </div>
       </div>
