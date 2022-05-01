@@ -25,9 +25,9 @@ const Navbar = (props) => {
 
   //MAIN RETURN
   return (
-    <nav className="Navbar ShadowNavbar">
-      <ul>
-        <li className="navbar-brand">
+    <nav className="Navbar navbar-expand-lg ShadowNavbar">
+      <div className="container-fluid">
+        <a className="navbar-brand">
           <span
             className="LogoNavbar"
             style={{ cursor: 'pointer' }}
@@ -35,29 +35,34 @@ const Navbar = (props) => {
           >
             Social Web
           </span>
-        </li>
-
-        <li>
-          <span style={{ color: 'white', cursor: 'default' }}>Profile</span>
-        </li>
-        <li>
-          <span style={{ color: 'white', cursor: 'default' }}>Messages</span>
-        </li>
-        <li style={{ float: 'right' }}>
-          <button
-            className="button-27"
-            onClick={() =>
-              handleLogout(
-                props.user,
-                props.handleUserLogedOut,
-                props.handleSelectScreen,
-              )
-            }
-          >
-            LogOut
-          </button>
-        </li>
-      </ul>
+        </a>
+        <div className="navbar-collapse">
+          <ul className="Navbar-nav">
+            <li className="Nav-link">
+              <span style={{ color: 'white', cursor: 'default' }}>Profile</span>
+            </li>
+            <li className="Nav-link">
+              <span style={{ color: 'white', cursor: 'default' }}>
+                Messages
+              </span>
+            </li>
+          </ul>
+          <form className="d-flex">
+            <button
+              className="button-27"
+              onClick={() =>
+                handleLogout(
+                  props.user,
+                  props.handleUserLogedOut,
+                  props.handleSelectScreen,
+                )
+              }
+            >
+              LogOut
+            </button>
+          </form>
+        </div>
+      </div>
     </nav>
   )
 }
