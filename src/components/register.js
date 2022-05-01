@@ -123,6 +123,7 @@ class Register extends Component {
               style={{
                 color: 'purple',
                 fontWeight: 'bold',
+                cursor: 'pointer',
               }}
               onClick={() => this.props.handleSelectScreen('login')}
             >

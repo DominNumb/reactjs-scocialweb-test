@@ -102,7 +102,7 @@ class Login extends Component {
         <div>
           <span>You don't have an account? </span>
           <span
-            style={{ color: 'purple', fontWeight: 'bold' }}
+            style={{ color: 'purple', fontWeight: 'bold', cursor: 'pointer' }}
             onClick={() => this.props.handleSelectScreen('register')}
           >
             Register here!
