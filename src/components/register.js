@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import '../styles/register.css'
 //REDUX
 import { connect } from 'react-redux'
 
@@ -41,6 +41,7 @@ class Register extends Component {
               break
             case 'auth/missing-email':
               this.setState({ errormsg: 'Email is missing!' })
+              break
             default:
               break
           }
@@ -50,61 +51,86 @@ class Register extends Component {
 
     //MAIN return
     return (
-      <div className="LoginForm">
-        <div>
-          <h1 className="LogoLabel">Register</h1>
-          <br />
-          <input
-            className="LoginInput"
-            value={this.state.useremail}
-            onChange={(event) =>
-              this.setState({ useremail: event.target.value })
-            }
-            type="text"
-            placeholder="Type email"
-          />
-          <br />
-          <input
-            className="LoginInput"
-            value={this.state.userpassword}
-            onChange={(event) =>
-              this.setState({ userpassword: event.target.value })
-            }
-            type="password"
-            placeholder="Type password"
-          />
-          <br />
-          <br />
-          <div className="LoginLabel">
-            <span style={{ color: '#b71c1c' }}>{this.state.errormsg}</span>
+      <>
+        <ul
+          style={{
+            float: 'top',
+            marginLeft: 40,
+            marginTop: 40,
+            padding: 0,
+            listStyleType: 'none',
+            textAlign: 'left',
+          }}
+        >
+          <li>
+            <span href="#" value="">
+              <i
+                className="gg-arrow-left-r"
+                onClick={() => this.props.handleSelectScreen('login')}
+              />
+            </span>
+          </li>
+        </ul>
+
+        <div className="LoginForm">
+          <div>
+            <h1 className="LogoLabel">Register</h1>
+            <br />
+            <input
+              className="LoginInput"
+              value={this.state.useremail}
+              onChange={(event) =>
+                this.setState({ useremail: event.target.value })
+              }
+              type="text"
+              placeholder="Type email"
+            />
+            <br />
+            <input
+              className="LoginInput"
+              value={this.state.userpassword}
+              onChange={(event) =>
+                this.setState({ userpassword: event.target.value })
+              }
+              type="password"
+              placeholder="Type password"
+            />
+            <br />
+            <br />
+            <div className="LoginLabel">
+              <span style={{ color: '#b71c1c' }}>{this.state.errormsg}</span>
+            </div>
+            <br />
+            <span
+              className="button-27"
+              style={{ width: 200 }}
+              onClick={() =>
+                handleRegister(this.state.useremail, this.state.userpassword)
+              }
+            >
+              Register
+            </span>
           </div>
           <br />
-          <span
-            className="button-27"
-            style={{ width: 200 }}
-            onClick={() =>
-              handleRegister(this.state.useremail, this.state.userpassword)
-            }
-          >
-            Register
-          </span>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <div>
+            <span>You have an account? </span>
+            <span
+              style={{
+                color: 'purple',
+                fontWeight: 'bold',
+              }}
+              onClick={() => this.props.handleSelectScreen('login')}
+            >
+              Login here!
+            </span>
+          </div>
         </div>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <div>
-          <span>You have an account? </span>
-          <span
-            style={{ color: 'purple', fontWeight: 'bold' }}
-            onClick={() => this.props.handleSelectScreen('login')}
-          >
-            Login here!
-          </span>
-        </div>
-      </div>
+      </>
     )
   }
 }
