@@ -13,6 +13,7 @@ class Home extends Component {
 
   //MAIN HOME
   render() {
+    //eslint-disable-next-line
     const auth = getAuth()
 
     //MAIN RETURN

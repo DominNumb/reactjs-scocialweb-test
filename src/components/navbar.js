@@ -32,7 +32,7 @@ const Navbar = (props) => {
         <a className="navbar-brand" style={{ cursor: 'pointer' }}>
           <span
             className="LogoNavbar"
-            onClick={() => this.props.handleSelectScreen('home')}
+            onClick={() => props.handleSelectScreen('home')}
           >
             Social Web
           </span>
