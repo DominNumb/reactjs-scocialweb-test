@@ -15,20 +15,6 @@ class Home extends Component {
   render() {
     const auth = getAuth()
 
-    //LogOut FUNCTION
-    function handleLogout(user, onLogout, onScreen) {
-      onLogout(user)
-      auth
-        .signOut()
-        .then(function () {
-          console.log('[INFO] User LogedOut')
-          onScreen('login')
-        })
-        .catch(function (error) {
-          console.log(error)
-        })
-    }
-
     //MAIN RETURN
     return (
       <>
@@ -36,6 +22,7 @@ class Home extends Component {
           <Navbar />
         </header>
         <div className="container">
+          <br />
           <h1>Home screen</h1>
           <br />
           <span>Welcome '</span>
@@ -44,18 +31,6 @@ class Home extends Component {
           <br />
           <br />
           <br />
-          <button
-            className="button-27"
-            onClick={() =>
-              handleLogout(
-                this.props.user,
-                this.props.handleUserLogedOut,
-                this.props.handleSelectScreen,
-              )
-            }
-          >
-            logOut
-          </button>
         </div>
       </>
     )

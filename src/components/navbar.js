@@ -1,14 +1,41 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-const Navbar = () => {
+//REDUX
+import { connect } from 'react-redux'
+import { getAuth } from 'firebase/auth'
+
+//MAIN NAVBAR
+const Navbar = (props) => {
+  const auth = getAuth()
+
+  //LogOut FUNCTION
+  function handleLogout(user, onLogout, onScreen) {
+    onLogout(user)
+    auth
+      .signOut()
+      .then(function () {
+        console.log('[INFO] User LogedOut')
+        onScreen('login')
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+  }
+
+  //MAIN RETURN
   return (
     <nav
-      className="navbar navbar-expand-lg navbar-dark"
+      className="navbar navbar-expand-lg navbar-dark ShadowNavbar"
       style={{ backgroundColor: '#121212' }}
     >
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
-          <span className="LogoNavbar">Social Web</span>
+        <a className="navbar-brand" style={{ cursor: 'pointer' }}>
+          <span
+            className="LogoNavbar"
+            onClick={() => this.props.handleSelectScreen('home')}
+          >
+            Social Web
+          </span>
         </a>
         <button
           className="navbar-toggler"
@@ -32,13 +59,40 @@ const Navbar = () => {
           </div>
         </div>
         <div className="d-flex">
-          <a className="nav-link" href="#">
+          <button
+            className="button-27"
+            onClick={() =>
+              handleLogout(
+                props.user,
+                props.handleUserLogedOut,
+                props.handleSelectScreen,
+              )
+            }
+          >
             LogOut
-          </a>
+          </button>
         </div>
       </div>
     </nav>
   )
 }
 
-export default Navbar
+//REDUX CONTAINER
+function mapStateToProps(state) {
+  return {
+    firebaseConfig: state.firebaseConfig,
+    user: state.user,
+  }
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    handleUserLogedOut: (user) => {
+      dispatch({ type: 'USER_LOGOUT', data: user })
+    },
+    handleSelectScreen: (screen) => {
+      dispatch({ type: 'USER_SCREEN', data: screen })
+    },
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar)
