@@ -88,3 +88,11 @@
   box-shadow: none;
   transform: translateY(0);
 }
+
+/* HOME */
+.LogoNavbar {
+  text-shadow: 0 0 3px #fb00ff, 0 0 15px #ff0000, 0 0 25px #8000ff;
+  margin: 30px;
+  color: #121212;
+  font-weight: bolder;
+}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Navbar from './navbar'
 
 //REDUX
 import { connect } from 'react-redux'
@@ -31,26 +32,31 @@ class Home extends Component {
     //MAIN RETURN
     return (
       <>
-        <h1>Home screen</h1>
-        <br />
-        <span>Welcome '</span>
-        <span style={{ color: 'white' }}>{this.props.user.email}</span>
-        <span>'</span>
-        <br />
-        <br />
-        <br />
-        <button
-          className="button-27"
-          onClick={() =>
-            handleLogout(
-              this.props.user,
-              this.props.handleUserLogedOut,
-              this.props.handleSelectScreen,
-            )
-          }
-        >
-          logOut
-        </button>
+        <header className="site-header sticky-top ">
+          <Navbar />
+        </header>
+        <div className="container">
+          <h1>Home screen</h1>
+          <br />
+          <span>Welcome '</span>
+          <span style={{ color: 'white' }}>{this.props.user.email}</span>
+          <span>'</span>
+          <br />
+          <br />
+          <br />
+          <button
+            className="button-27"
+            onClick={() =>
+              handleLogout(
+                this.props.user,
+                this.props.handleUserLogedOut,
+                this.props.handleSelectScreen,
+              )
+            }
+          >
+            logOut
+          </button>
+        </div>
       </>
     )
   }

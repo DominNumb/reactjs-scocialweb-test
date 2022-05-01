@@ -55,16 +55,6 @@ class Login extends Component {
     return (
       <div className="LoginForm">
         <div>
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
           <h1 className="LogoLabel">Login to Social Web</h1>
           <br />
           <input
