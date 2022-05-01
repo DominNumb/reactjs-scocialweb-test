@@ -25,45 +25,21 @@ const Navbar = (props) => {
 
   //MAIN RETURN
   return (
-    <nav className="Navbar navbar-expand-lg ShadowNavbar">
-      <div className="container-fluid">
-        <a className="navbar-brand">
-          <span
-            className="LogoNavbar"
-            style={{ cursor: 'pointer' }}
-            onClick={() => props.handleSelectScreen('home')}
-          >
-            Social Web
-          </span>
-        </a>
-        <div className="navbar-collapse">
-          <ul className="Navbar-nav">
-            <li className="Nav-link">
-              <span style={{ color: 'white', cursor: 'default' }}>Profile</span>
-            </li>
-            <li className="Nav-link">
-              <span style={{ color: 'white', cursor: 'default' }}>
-                Messages
-              </span>
-            </li>
-          </ul>
-          <form className="d-flex">
-            <button
-              className="button-27"
-              onClick={() =>
-                handleLogout(
-                  props.user,
-                  props.handleUserLogedOut,
-                  props.handleSelectScreen,
-                )
-              }
-            >
-              LogOut
-            </button>
-          </form>
-        </div>
-      </div>
-    </nav>
+    <>
+      <ul>
+        <li>
+          <a className="LogoNavbar">Social Web</a>
+        </li>
+        <li>
+          <a href="#news">Profile</a>
+        </li>
+        <li style={{ float: 'right' }}>
+          <a className="button-27" onClick={() => props.handleUserLogedOut()}>
+            LogOut
+          </a>
+        </li>
+      </ul>
+    </>
   )
 }
 
