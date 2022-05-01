@@ -34,7 +34,16 @@ const Navbar = (props) => {
           <a href="#news">Profile</a>
         </li>
         <li style={{ float: 'right' }}>
-          <a className="button-27" onClick={() => props.handleUserLogedOut()}>
+          <a
+            className="button-27"
+            onClick={() =>
+              handleLogout(
+                props.user,
+                props.handleUserLogedOut,
+                props.handleSelectScreen,
+              )
+            }
+          >
             LogOut
           </a>
         </li>
