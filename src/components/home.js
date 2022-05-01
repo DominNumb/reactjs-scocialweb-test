@@ -32,6 +32,13 @@ class Home extends Component {
     return (
       <>
         <h1>Home screen</h1>
+        <br />
+        <span>Welcome '</span>
+        <span style={{ color: 'white' }}>{this.props.user.email}</span>
+        <span>'</span>
+        <br />
+        <br />
+        <br />
         <button
           className="button-27"
           onClick={() =>
