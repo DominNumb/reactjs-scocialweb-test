@@ -2,6 +2,15 @@ ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  height: 90px;
   overflow: hidden;
   background-color: #121212;
   position: -webkit-sticky; /* Safari */
@@ -12,6 +21,9 @@ ul {
 
 li {
   float: left;
+  margin-top: 1px;
+
+  margin-bottom: 1px;
 }
 
 li a {

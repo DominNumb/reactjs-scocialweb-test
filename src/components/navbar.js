@@ -27,26 +27,30 @@ const Navbar = (props) => {
   return (
     <>
       <ul>
-        <li>
-          <a className="LogoNavbar">Social Web</a>
-        </li>
-        <li>
-          <a href="#news">Profile</a>
-        </li>
-        <li style={{ float: 'right' }}>
-          <a
-            className="button-27"
-            onClick={() =>
-              handleLogout(
-                props.user,
-                props.handleUserLogedOut,
-                props.handleSelectScreen,
-              )
-            }
-          >
-            LogOut
-          </a>
-        </li>
+        <div>
+          <li>
+            <a className="LogoNavbar">Social Web</a>
+          </li>
+          <li>
+            <a href="#news">Profile</a>
+          </li>
+        </div>
+        <div>
+          <li style={{ float: 'right' }}>
+            <a
+              className="button-27"
+              onClick={() =>
+                handleLogout(
+                  props.user,
+                  props.handleUserLogedOut,
+                  props.handleSelectScreen,
+                )
+              }
+            >
+              LogOut
+            </a>
+          </li>
+        </div>
       </ul>
     </>
   )
