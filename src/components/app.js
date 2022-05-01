@@ -20,6 +20,7 @@ class App extends Component {
   }
 
   render() {
+    // eslint-disable-next-line
     const app = initializeApp(this.props.firebaseConfig)
     const auth = getAuth()
 
