@@ -52,26 +52,6 @@ class Register extends Component {
     //MAIN return
     return (
       <>
-        <ul
-          style={{
-            float: 'top',
-            marginLeft: 40,
-            marginTop: 40,
-            padding: 0,
-            listStyleType: 'none',
-            textAlign: 'left',
-          }}
-        >
-          <li>
-            <span href="#" value="">
-              <i
-                className="gg-arrow-left-r"
-                onClick={() => this.props.handleSelectScreen('login')}
-              />
-            </span>
-          </li>
-        </ul>
-
         <div className="LoginForm">
           <div>
             <h1 className="LogoLabel" style={{ cursor: 'default' }}>
