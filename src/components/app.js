@@ -16,7 +16,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      userIsSignedUp: 'null',
+      userIsSignedUp: undefined,
     }
   }
 
@@ -26,29 +26,29 @@ class App extends Component {
     const auth = getAuth()
 
     //Check if USER is already loged in
-    if (this.state.userIsSignedUp === 'null') {
+    if (this.state.userIsSignedUp === undefined) {
       onAuthStateChanged(auth, (user) => {
         if (user) {
-          this.setState({ userIsSignedUp: 'true' })
+          this.setState({ userIsSignedUp: true })
           console.log('[INFO] User was already logedIn')
           this.props.handleSelectScreen('home')
           this.props.handleUserLogin(user)
         } else {
           console.log("[INFO] User isn't logedIn")
           this.props.handleSelectScreen('login')
-          this.setState({ userIsSignedUp: 'false' })
+          this.setState({ userIsSignedUp: false })
         }
       })
     }
 
     //Open HOME or LOGIN screen depand if user is signedin
-    if (this.state.userIsSignedUp === 'true') {
+    if (this.state.userIsSignedUp === true) {
       return (
         <div className="App">
           <Home />
         </div>
       )
-    } else if (this.state.userIsSignedUp === 'false') {
+    } else if (this.state.userIsSignedUp === false) {
       if (this.props.slscreen === 'login') {
         return (
           <div className="App">
