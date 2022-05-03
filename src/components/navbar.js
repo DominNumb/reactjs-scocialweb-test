@@ -39,7 +39,7 @@ const Navbar = (props) => {
           <li>
             {props.slscreen === 'profile' ? (
               <a
-                href="#news"
+                href="#"
                 style={{ color: '#c30099' }}
                 onClick={() => props.handleSelectScreen('profile')}
               >
@@ -47,7 +47,7 @@ const Navbar = (props) => {
               </a>
             ) : (
               <a
-                href="#news"
+                href="#"
                 style={{ color: 'white' }}
                 onClick={() => props.handleSelectScreen('profile')}
               >
@@ -55,11 +55,17 @@ const Navbar = (props) => {
               </a>
             )}
           </li>
+          <li>
+            <a href="#" style={{ color: 'white' }}>
+              Messages
+            </a>
+          </li>
         </div>
         <div>
           <li style={{ float: 'right' }}>
             <a
               className="button-27"
+              style={{ margin: 10 }}
               onClick={() =>
                 handleLogout(
                   props.user,
@@ -73,6 +79,12 @@ const Navbar = (props) => {
           </li>
         </div>
       </ul>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </>
   )
 }
