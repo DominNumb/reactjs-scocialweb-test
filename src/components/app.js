@@ -10,6 +10,7 @@ import { connect } from 'react-redux'
 //FIREBASE
 import { initializeApp } from 'firebase/app'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import LoadingScreen from './loading'
 
 class App extends Component {
   constructor(props) {
@@ -62,6 +63,7 @@ class App extends Component {
         )
       }
     }
+    return <LoadingScreen />
   }
 }
 

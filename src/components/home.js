@@ -8,9 +8,10 @@ import { getAuth } from 'firebase/auth'
 class Home extends Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      loading: false,
+    }
   }
-
   //MAIN HOME
   render() {
     //eslint-disable-next-line
@@ -19,19 +20,21 @@ class Home extends Component {
     //MAIN RETURN
     return (
       <>
-        <header className="site-header sticky-top ">
-          <Navbar />
-        </header>
-        <div className="container">
-          <br />
-          <h1>Home screen</h1>
-          <br />
-          <span>Welcome '</span>
-          <span style={{ color: 'white' }}>{this.props.user.email}</span>
-          <span>'</span>
-          <br />
-          <br />
-          <br />
+        <div>
+          <header className="site-header sticky-top ">
+            <Navbar />
+          </header>
+          <div className="container">
+            <br />
+            <h1>Home screen</h1>
+            <br />
+            <span>Welcome '</span>
+            <span style={{ color: 'white' }}>{this.props.user.email}</span>
+            <span>'</span>
+            <br />
+            <br />
+            <br />
+          </div>
         </div>
       </>
     )
