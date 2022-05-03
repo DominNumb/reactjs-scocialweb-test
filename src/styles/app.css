@@ -27,7 +27,7 @@
 .LogoLabel {
   text-shadow: 0 0 3px #fb00ff, 0 0 15px #ff0000, 0 0 35px #8000ff;
   margin: 50px;
-  color: #121212;
+  color: #000000;
   font-weight: bolder;
 }
 .LoginInput {
@@ -88,5 +88,3 @@
   box-shadow: none;
   transform: translateY(0);
 }
-
-/* HOME */

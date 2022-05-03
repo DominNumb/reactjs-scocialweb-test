@@ -5,10 +5,13 @@ import '../styles/loading.css'
 const LoadingScreen = () => {
   return (
     <div className="loading-screen">
+      <h1
+        className="LogoLabel"
+        style={{ cursor: 'default', fontSize: 100, textAlign: 'center' }}
+      >
+        Social Web
+      </h1>
       <p>
-        <h1 className="LogoLabel" style={{ cursor: 'default', fontSize: 100 }}>
-          Social Web
-        </h1>
         Loading...
         <br />
         <b>Please wait!</b>
