@@ -29,10 +29,31 @@ const Navbar = (props) => {
       <ul>
         <div>
           <li>
-            <a className="LogoNavbar">Social Web</a>
+            <a
+              className="LogoNavbar"
+              onClick={() => props.handleSelectScreen('home')}
+            >
+              Social Web
+            </a>
           </li>
           <li>
-            <a href="#news">Profile</a>
+            {props.slscreen === 'profile' ? (
+              <a
+                href="#news"
+                style={{ color: '#c30099' }}
+                onClick={() => props.handleSelectScreen('profile')}
+              >
+                Profile
+              </a>
+            ) : (
+              <a
+                href="#news"
+                style={{ color: 'white' }}
+                onClick={() => props.handleSelectScreen('profile')}
+              >
+                Profile
+              </a>
+            )}
           </li>
         </div>
         <div>
@@ -61,6 +82,7 @@ function mapStateToProps(state) {
   return {
     firebaseConfig: state.firebaseConfig,
     user: state.user,
+    slscreen: state.selectedScreen.slscreen,
   }
 }
 function mapDispatchToProps(dispatch) {

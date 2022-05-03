@@ -3,6 +3,7 @@ import '../styles/app.css'
 import Login from './login'
 import Home from './home'
 import Register from './register'
+import Profile from './profile'
 
 //REDUX
 import { connect } from 'react-redux'
@@ -45,7 +46,8 @@ class App extends Component {
     if (this.state.userIsSignedUp === true) {
       return (
         <div className="App">
-          <Home />
+          {this.props.slscreen === 'home' && <Home />}
+          {this.props.slscreen === 'profile' && <Profile />}
         </div>
       )
     } else if (this.state.userIsSignedUp === false) {

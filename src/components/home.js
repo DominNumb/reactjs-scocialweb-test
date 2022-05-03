@@ -3,14 +3,14 @@ import Navbar from './navbar'
 
 //REDUX
 import { connect } from 'react-redux'
+
+//FIREBASE
 import { getAuth } from 'firebase/auth'
 
 class Home extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      loading: false,
-    }
+    this.state = {}
   }
   //MAIN HOME
   render() {
@@ -46,6 +46,7 @@ function mapStateToProps(state) {
   return {
     firebaseConfig: state.firebaseConfig,
     user: state.user,
+    slscreen: state.selectedScreen.slscreen,
   }
 }
 function mapDispatchToProps(dispatch) {
