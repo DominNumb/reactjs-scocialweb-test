@@ -40,7 +40,7 @@ li a {
 .LogoNavbar {
   text-shadow: 0 0 15px #fb00ff, 0 0 20px #ff0000, 0 0 45px #8000ff;
   font-size: 25px;
-  color: #121212;
+  color: #fb00ffca;
   font-weight: bolder;
   cursor: pointer;
   display: inline-block;
@@ -54,7 +54,8 @@ li a {
   pointer-events: none;
 }
 .LogoNavbar:hover {
-  text-shadow: 0 0 15px #0526ff, 0 0 45px #8000ff;
+  text-shadow: 0 0 25px #0526ff, 0 0 45px #8000ff;
+  color: #0119ba;
   transform: translateY(-1px);
 }
 .LogoNavbar:active {
