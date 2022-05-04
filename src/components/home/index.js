@@ -57,6 +57,9 @@ function mapDispatchToProps(dispatch) {
     handleSelectScreen: (screen) => {
       dispatch({ type: 'USER_SCREEN', data: screen })
     },
+    handleSetLoading: (loading) => {
+      dispatch({ type: 'USER_LOADING', data: loading })
+    },
   }
 }
 

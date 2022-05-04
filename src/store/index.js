@@ -2,12 +2,14 @@ import user from './user'
 import appVersion from './version'
 import firebaseConfig from './firebase/config'
 import selectedScreen from './selectedScreen'
+import loadingScreen from './loading'
 
 const allReducers = {
   user,
   appVersion,
   selectedScreen,
   firebaseConfig,
+  loadingScreen,
 }
 
 const reducer = (state = allReducers, action) => {
@@ -21,6 +23,9 @@ const reducer = (state = allReducers, action) => {
       return newState
     case 'USER_SCREEN':
       newState.selectedScreen.slscreen = action.data
+      return newState
+    case 'USER_LOADING':
+      newState.loadingScreen.usrLoading = action.data
       return newState
     default:
       break

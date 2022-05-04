@@ -21,6 +21,7 @@ class Login extends Component {
 
     //Login function
     const handleLogin = async (email, password) => {
+      this.props.handleSetLoading(true)
       await signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user
@@ -28,23 +29,29 @@ class Login extends Component {
           this.setState({ errormsg: '' })
           this.props.handleUserLogin(user)
           this.props.handleSelectScreen('home')
+          this.props.handleSetLoading(false)
         })
         .catch((error) => {
           const errorCode = error.code
           switch (error.code) {
             case 'auth/invalid-email':
               this.setState({ errormsg: 'Invalid email!' })
+              this.props.handleSetLoading(false)
               break
             case 'auth/user-not-found':
               this.setState({ errormsg: 'User not found!' })
+              this.props.handleSetLoading(false)
               break
             case 'auth/wrong-password':
               this.setState({ errormsg: 'Wrong password!' })
+              this.props.handleSetLoading(false)
               break
             case 'auth/internal-error':
               this.setState({ errormsg: 'Internal error' })
+              this.props.handleSetLoading(false)
               break
             default:
+              this.props.handleSetLoading(false)
               break
           }
           console.log('[ERROR] ' + errorCode)
@@ -125,6 +132,7 @@ function mapStateToProps(state) {
     user: state.user,
     version: state.appVersion.version,
     firebaseConfig: state.firebaseConfig,
+    usrLoading: state.loadingScreen.usrLoading,
   }
 }
 function mapDispatchToProps(dispatch) {
@@ -132,6 +140,9 @@ function mapDispatchToProps(dispatch) {
     handleUserLogin: (user) => dispatch({ type: 'USER_LOGIN', data: user }),
     handleSelectScreen: (screen) => {
       dispatch({ type: 'USER_SCREEN', data: screen })
+    },
+    handleSetLoading: (loading) => {
+      dispatch({ type: 'USER_LOADING', data: loading })
     },
   }
 }

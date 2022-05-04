@@ -162,7 +162,20 @@ const Profile = () => {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
+    slscreen: state.selectedScreen.slscreen,
+    usrLoading: state.loadingScreen.usrLoading,
+  }
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    handleUserLogin: (user) => dispatch({ type: 'USER_LOGIN', data: user }),
+    handleSelectScreen: (screen) => {
+      dispatch({ type: 'USER_SCREEN', data: screen })
+    },
+    handleSetLoading: (loading) => {
+      dispatch({ type: 'USER_LOADING', data: loading })
+    },
   }
 }
 
-export default connect(mapStateToProps)(Profile)
+export default connect(mapStateToProps, mapDispatchToProps)(Profile)

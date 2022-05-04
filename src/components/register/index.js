@@ -16,6 +16,7 @@ class Register extends Component {
 
     //Register function
     const handleRegister = async (email, password) => {
+      this.props.handleSetLoading(true)
       await createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user
@@ -23,26 +24,33 @@ class Register extends Component {
           this.setState({ errormsg: '' })
           this.props.handleUserLogin(user)
           this.props.handleSelectScreen('home')
+          this.props.handleSetLoading(false)
         })
         .catch((error) => {
           const errorCode = error.code
           switch (error.code) {
             case 'auth/invalid-email':
               this.setState({ errormsg: 'Invalid email!' })
+              this.props.handleSetLoading(false)
               break
             case 'auth/weak-password':
               this.setState({ errormsg: 'Weak password!' })
+              this.props.handleSetLoading(false)
               break
             case 'auth/email-already-in-use':
               this.setState({ errormsg: 'Email was already used!' })
+              this.props.handleSetLoading(false)
               break
             case 'auth/internal-error':
               this.setState({ errormsg: 'Internal error' })
+              this.props.handleSetLoading(false)
               break
             case 'auth/missing-email':
               this.setState({ errormsg: 'Email is missing!' })
+              this.props.handleSetLoading(false)
               break
             default:
+              this.props.handleSetLoading(false)
               break
           }
           console.log('[ERROR] ' + errorCode)
@@ -123,6 +131,7 @@ function mapStateToProps(state) {
   return {
     user: state.user,
     firebaseConfig: state.firebaseConfig,
+    usrLoading: state.loadingScreen.usrLoading,
   }
 }
 function mapDispatchToProps(dispatch) {
@@ -130,6 +139,9 @@ function mapDispatchToProps(dispatch) {
     handleUserLogin: (user) => dispatch({ type: 'USER_LOGIN', data: user }),
     handleSelectScreen: (screen) => {
       dispatch({ type: 'USER_SCREEN', data: screen })
+    },
+    handleSetLoading: (loading) => {
+      dispatch({ type: 'USER_LOADING', data: loading })
     },
   }
 }

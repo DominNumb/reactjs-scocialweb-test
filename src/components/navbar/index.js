@@ -11,15 +11,18 @@ const Navbar = (props) => {
 
   //LogOut FUNCTION
   function handleLogout(user, onLogout, onScreen) {
+    props.handleSetLoading(true)
     onLogout(user)
     auth
       .signOut()
       .then(function () {
         console.log('[INFO] User LogedOut')
         onScreen('login')
+        props.handleSetLoading(false)
       })
       .catch(function (error) {
-        console.log(error)
+        console.log('[ERROR] ' + error)
+        props.handleSetLoading(false)
       })
   }
 
@@ -29,6 +32,7 @@ const Navbar = (props) => {
       <ul>
         <div>
           <li>
+            {/* eslint-disable-next-line */}
             <a
               href="#"
               className="LogoNavbar"
@@ -40,6 +44,7 @@ const Navbar = (props) => {
           </li>
           <li>
             {props.slscreen === 'profile' ? (
+              /* eslint-disable-next-line */
               <a
                 href="#"
                 style={{ color: '#c30099' }}
@@ -48,6 +53,7 @@ const Navbar = (props) => {
                 Profile
               </a>
             ) : (
+              /* eslint-disable-next-line */
               <a
                 href="#"
                 style={{ color: 'white' }}
@@ -58,6 +64,7 @@ const Navbar = (props) => {
             )}
           </li>
           <li>
+            {/* eslint-disable-next-line */}
             <a href="#" style={{ color: 'white' }}>
               Messages
             </a>
@@ -65,6 +72,7 @@ const Navbar = (props) => {
         </div>
         <div>
           <li style={{ float: 'right' }}>
+            {/* eslint-disable-next-line */}
             <a
               className="button-27"
               style={{ marginRight: 30 }}
@@ -97,6 +105,7 @@ function mapStateToProps(state) {
     firebaseConfig: state.firebaseConfig,
     user: state.user,
     slscreen: state.selectedScreen.slscreen,
+    usrLoading: state.loadingScreen.usrLoading,
   }
 }
 function mapDispatchToProps(dispatch) {
@@ -106,6 +115,9 @@ function mapDispatchToProps(dispatch) {
     },
     handleSelectScreen: (screen) => {
       dispatch({ type: 'USER_SCREEN', data: screen })
+    },
+    handleSetLoading: (loading) => {
+      dispatch({ type: 'USER_LOADING', data: loading })
     },
   }
 }
