@@ -31,6 +31,7 @@ const Navbar = (props) => {
           <li>
             <a
               className="LogoNavbar"
+              style={{ marginLeft: 30 }}
               onClick={() => props.handleSelectScreen('home')}
             >
               Social Web
@@ -65,7 +66,7 @@ const Navbar = (props) => {
           <li style={{ float: 'right' }}>
             <a
               className="button-27"
-              style={{ margin: 10 }}
+              style={{ marginRight: 30 }}
               onClick={() =>
                 handleLogout(
                   props.user,
