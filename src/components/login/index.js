@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import LoadingScreen from '../loading'
 
 //REDUX
 import { connect } from 'react-redux'
@@ -13,6 +14,7 @@ class Login extends Component {
       useremail: '',
       userpassword: '',
       errormsg: '',
+      loading: false,
     }
   }
 
@@ -21,7 +23,7 @@ class Login extends Component {
 
     //Login function
     const handleLogin = async (email, password) => {
-      this.props.handleSetLoading(true)
+      this.setState({ loading: true })
       await signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user
@@ -29,33 +31,29 @@ class Login extends Component {
           this.setState({ errormsg: '' })
           this.props.handleUserLogin(user)
           this.props.handleSelectScreen('home')
-          this.props.handleSetLoading(false)
+          this.setState({ loading: false })
         })
         .catch((error) => {
           const errorCode = error.code
           switch (error.code) {
             case 'auth/invalid-email':
               this.setState({ errormsg: 'Invalid email!' })
-              alert('Invalid email!')
-              this.props.handleSetLoading(false)
+              this.setState({ loading: false })
               break
             case 'auth/user-not-found':
               this.setState({ errormsg: 'User not found!' })
-              alert('ser not found!')
-              this.props.handleSetLoading(false)
+              this.setState({ loading: false })
               break
             case 'auth/wrong-password':
               this.setState({ errormsg: 'Wrong password!' })
-              alert('Wrong password!')
-              this.props.handleSetLoading(false)
+              this.setState({ loading: false })
               break
             case 'auth/internal-error':
               this.setState({ errormsg: 'Internal error' })
-              alert('Internal error')
-              this.props.handleSetLoading(false)
+              this.setState({ loading: false })
               break
             default:
-              this.props.handleSetLoading(false)
+              this.setState({ loading: false })
               break
           }
           console.log('[ERROR] ' + errorCode)
@@ -63,70 +61,76 @@ class Login extends Component {
     }
 
     //Login return
-    return (
-      <div className="LoginForm">
-        <div>
-          <h1 className="LogoLabel" style={{ cursor: 'default' }}>
-            Login to Social Web
-          </h1>
-          <br />
-          <input
-            className="LoginInput"
-            value={this.state.useremail}
-            onChange={(event) =>
-              this.setState({ useremail: event.target.value })
-            }
-            type="text"
-            placeholder="Type email"
-          />
-          <br />
-          <input
-            className="LoginInput"
-            value={this.state.userpassword}
-            onChange={(event) =>
-              this.setState({ userpassword: event.target.value })
-            }
-            type="password"
-            placeholder="Type password"
-          />
-          <br />
-          <br />
-          <div className="LoginLabel">
-            <span style={{ color: '#b71c1c' }}>{this.state.errormsg}</span>
+    if (!this.state.loading) {
+      return (
+        <div className="LoginForm">
+          <div>
+            <h1 className="LogoLabel" style={{ cursor: 'default' }}>
+              Login to Social Web
+            </h1>
+            <br />
+            <input
+              className="LoginInput"
+              value={this.state.useremail}
+              onChange={(event) =>
+                this.setState({ useremail: event.target.value })
+              }
+              type="text"
+              placeholder="Type email"
+            />
+            <br />
+            <input
+              className="LoginInput"
+              value={this.state.userpassword}
+              onChange={(event) =>
+                this.setState({ userpassword: event.target.value })
+              }
+              type="password"
+              placeholder="Type password"
+            />
+            <br />
+            <br />
+            <div className="LoginLabel">
+              <span style={{ color: '#b71c1c' }}>{this.state.errormsg}</span>
+            </div>
+            <br />
+
+            <span
+              className="button-27"
+              style={{ width: 200 }}
+              onClick={() =>
+                handleLogin(this.state.useremail, this.state.userpassword)
+              }
+            >
+              Login
+            </span>
           </div>
           <br />
-
-          <span
-            className="button-27"
-            style={{ width: 200 }}
-            onClick={() =>
-              handleLogin(this.state.useremail, this.state.userpassword)
-            }
-          >
-            Login
-          </span>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <div>
+            <span style={{ cursor: 'default' }}>
+              You don't have an account?{' '}
+            </span>
+            <span
+              style={{ color: 'purple', fontWeight: 'bold', cursor: 'pointer' }}
+              onClick={() => this.props.handleSelectScreen('register')}
+            >
+              Register here!
+            </span>
+          </div>
+          <br />
+          <div className="LoginLabel" style={{ cursor: 'default' }}>
+            <span>v{this.props.version} by DominNumb</span>
+          </div>
         </div>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <div>
-          <span style={{ cursor: 'default' }}>You don't have an account? </span>
-          <span
-            style={{ color: 'purple', fontWeight: 'bold', cursor: 'pointer' }}
-            onClick={() => this.props.handleSelectScreen('register')}
-          >
-            Register here!
-          </span>
-        </div>
-        <br />
-        <div className="LoginLabel" style={{ cursor: 'default' }}>
-          <span>v{this.props.version} by DominNumb</span>
-        </div>
-      </div>
-    )
+      )
+    } else {
+      return <LoadingScreen />
+    }
   }
 }
 
@@ -136,17 +140,15 @@ function mapStateToProps(state) {
     user: state.user,
     version: state.appVersion.version,
     firebaseConfig: state.firebaseConfig,
-    usrLoading: state.loadingScreen.usrLoading,
   }
 }
 function mapDispatchToProps(dispatch) {
   return {
-    handleUserLogin: (user) => dispatch({ type: 'USER_LOGIN', data: user }),
+    handleUserLogin: (user) => {
+      dispatch({ type: 'USER_LOGIN', data: user })
+    },
     handleSelectScreen: (screen) => {
       dispatch({ type: 'USER_SCREEN', data: screen })
-    },
-    handleSetLoading: (loading) => {
-      dispatch({ type: 'USER_LOADING', data: loading })
     },
   }
 }

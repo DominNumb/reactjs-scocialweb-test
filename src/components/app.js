@@ -26,48 +26,46 @@ class App extends Component {
     const app = initializeApp(this.props.firebaseConfig)
     const auth = getAuth()
 
-    //CHECK if its loading...
-    if (this.props.usrLoading === false) {
-      //Check if USER is already loged in
-      if (this.state.userIsSignedUp === undefined) {
-        onAuthStateChanged(auth, (user) => {
-          if (user) {
-            this.setState({ userIsSignedUp: true })
-            console.log('[INFO] User was already logedIn')
-            this.props.handleSelectScreen('home')
-            this.props.handleUserLogin(user)
-          } else {
-            console.log("[INFO] User isn't logedIn")
-            this.props.handleSelectScreen('login')
-            this.setState({ userIsSignedUp: false })
-          }
-        })
-      }
+    //Check if USER is already loged in
+    if (this.state.userIsSignedUp === undefined) {
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          this.setState({ userIsSignedUp: true })
+          console.log('[INFO] User was already logedIn')
+          this.props.handleSelectScreen('home')
+          this.props.handleUserLogin(user)
+        } else {
+          console.log("[INFO] User isn't logedIn")
+          this.props.handleSelectScreen('login')
+          this.setState({ userIsSignedUp: false })
+        }
+      })
+    }
 
-      //Open HOME or LOGIN screen depand if user is signedin
-      if (this.state.userIsSignedUp === true) {
+    //Open HOME or LOGIN screen depand if user is signedin
+    if (this.state.userIsSignedUp === true) {
+      return (
+        <div className="App">
+          {this.props.slscreen === 'home' && <Home />}
+          {this.props.slscreen === 'profile' && <Profile />}
+        </div>
+      )
+    } else if (this.state.userIsSignedUp === false) {
+      if (this.props.slscreen === 'login') {
         return (
           <div className="App">
-            {this.props.slscreen === 'home' && <Home />}
-            {this.props.slscreen === 'profile' && <Profile />}
+            <Login />
           </div>
         )
-      } else if (this.state.userIsSignedUp === false) {
-        if (this.props.slscreen === 'login') {
-          return (
-            <div className="App">
-              <Login />
-            </div>
-          )
-        } else if (this.props.slscreen === 'register') {
-          return (
-            <div className="App">
-              <Register />
-            </div>
-          )
-        }
+      } else if (this.props.slscreen === 'register') {
+        return (
+          <div className="App">
+            <Register />
+          </div>
+        )
       }
     }
+
     return <LoadingScreen />
   }
 }
