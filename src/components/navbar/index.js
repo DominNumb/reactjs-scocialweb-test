@@ -1,5 +1,5 @@
 import React from 'react'
-import '../styles/navbar.css'
+import './navbar.css'
 
 //REDUX
 import { connect } from 'react-redux'
@@ -30,6 +30,7 @@ const Navbar = (props) => {
         <div>
           <li>
             <a
+              href="#"
               className="LogoNavbar"
               style={{ marginLeft: 30 }}
               onClick={() => props.handleSelectScreen('home')}

@@ -1,6 +1,6 @@
 import React from 'react'
 import CircularProgress from '@mui/material/CircularProgress'
-import '../styles/loading.css'
+import './loading.css'
 
 const LoadingScreen = () => {
   return (

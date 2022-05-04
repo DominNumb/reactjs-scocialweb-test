@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import '../styles/register.css'
+import './register.css'
 //REDUX
 import { connect } from 'react-redux'
 
