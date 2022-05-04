@@ -36,18 +36,22 @@ class Login extends Component {
           switch (error.code) {
             case 'auth/invalid-email':
               this.setState({ errormsg: 'Invalid email!' })
+              alert('Invalid email!')
               this.props.handleSetLoading(false)
               break
             case 'auth/user-not-found':
               this.setState({ errormsg: 'User not found!' })
+              alert('ser not found!')
               this.props.handleSetLoading(false)
               break
             case 'auth/wrong-password':
               this.setState({ errormsg: 'Wrong password!' })
+              alert('Wrong password!')
               this.props.handleSetLoading(false)
               break
             case 'auth/internal-error':
               this.setState({ errormsg: 'Internal error' })
+              alert('Internal error')
               this.props.handleSetLoading(false)
               break
             default:

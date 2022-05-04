@@ -31,22 +31,27 @@ class Register extends Component {
           switch (error.code) {
             case 'auth/invalid-email':
               this.setState({ errormsg: 'Invalid email!' })
+              alert('Invalid email!')
               this.props.handleSetLoading(false)
               break
             case 'auth/weak-password':
               this.setState({ errormsg: 'Weak password!' })
+              alert('Weak password!')
               this.props.handleSetLoading(false)
               break
             case 'auth/email-already-in-use':
               this.setState({ errormsg: 'Email was already used!' })
+              alert('Email was already used!')
               this.props.handleSetLoading(false)
               break
             case 'auth/internal-error':
               this.setState({ errormsg: 'Internal error' })
+              alert('Internal error')
               this.props.handleSetLoading(false)
               break
             case 'auth/missing-email':
               this.setState({ errormsg: 'Email is missing!' })
+              alert('Email is missing!')
               this.props.handleSetLoading(false)
               break
             default:
