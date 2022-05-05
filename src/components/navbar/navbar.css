@@ -75,6 +75,6 @@ li a {
   margin-right: 20px;
   border-radius: 50%;
   border: #9328bafd;
-  border-style: double;
+  border-style: solid;
   box-shadow: 0 0 20px rgba(255, 0, 255, 0.608);
 }
