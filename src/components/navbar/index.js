@@ -1,13 +1,47 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './navbar.css'
 
 //REDUX
 import { connect } from 'react-redux'
+
+//FIREBASE
+import {
+  collection,
+  query,
+  where,
+  getFirestore,
+  getDocs,
+  doc,
+} from 'firebase/firestore'
+import { initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
 
 //MAIN NAVBAR
 const Navbar = (props, { onLoad }) => {
   const auth = getAuth()
+  const app = initializeApp(props.firebaseConfig)
+  const db = getFirestore(app)
+
+  //USER INFO
+  const [userData, setUserData] = useState()
+  const [username, setUsername] = useState()
+  const [userphoto, setUserphoto] = useState()
+  function getUsername() {
+    const citiesRef = collection(db, 'users')
+    const q = query(citiesRef, where('email', '==', props.user.email))
+    getDocs(q).then((response) => {
+      const usrs = response.docs.map((doc) => ({
+        data: doc.data(),
+        id: doc.id,
+      }))
+      setUserData(usrs)
+      setUsername(usrs.map((user) => user.data.username))
+      setUserphoto(usrs.map((user) => user.data.photoURL))
+    })
+  }
+  useEffect(() => {
+    getUsername()
+  }, [])
 
   //LogOut FUNCTION
   function handleLogout(user, onLogout, onScreen) {
@@ -71,6 +105,7 @@ const Navbar = (props, { onLoad }) => {
           </li>
         </div>
         <div>
+          <img src={userphoto} className="NavbarPhoto" />
           <li style={{ float: 'right' }}>
             {/* eslint-disable-next-line */}
             <a
