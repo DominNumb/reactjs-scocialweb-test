@@ -11,8 +11,11 @@ class Register extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      username: '',
+      userphoto: '',
       useremail: '',
       userpassword: '',
+      userpasswordSec: '',
       errormsg: '',
       loading: false,
     }
@@ -23,48 +26,63 @@ class Register extends Component {
     //Register function
     const handleRegister = async (email, password) => {
       this.setState({ loading: true })
-      await createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          const user = userCredential.user
-          console.log('[INFO] Register successful!')
-          this.setState({ errormsg: '' })
-          this.props.handleUserLogin(user)
-          this.props.handleSelectScreen('home')
-          this.setState({ loading: false })
-        })
-        .catch((error) => {
-          const errorCode = error.code
-          switch (error.code) {
-            case 'auth/invalid-email':
-              this.setState({ errormsg: 'Invalid email!' })
-              this.setState({ loading: false })
-              break
-            case 'auth/weak-password':
-              this.setState({ errormsg: 'Weak password!' })
-              this.setState({ loading: false })
-              break
-            case 'auth/email-already-in-use':
-              this.setState({ errormsg: 'Email was already used!' })
-              this.setState({ loading: false })
-              break
-            case 'auth/internal-error':
-              this.setState({ errormsg: 'Internal error' })
-              this.setState({ loading: false })
-              break
-            case 'auth/missing-email':
-              this.setState({ errormsg: 'Email is missing!' })
-              this.setState({ loading: false })
-              break
-            case 'auth/network-request-failed':
-              this.setState({ errormsg: 'Internet connection failed!' })
-              this.setState({ loading: false })
-              break
-            default:
-              this.setState({ loading: false })
-              break
-          }
-          console.log('[ERROR] ' + errorCode)
-        })
+      //Check if is not second password empty
+      if (this.state.userpassword === '') {
+        this.setState({ errormsg: 'Password is missing!' })
+        this.setState({ loading: false })
+      } else if (this.state.userpasswordSec === '') {
+        this.setState({ errormsg: 'Second password is missing!' })
+        this.setState({ loading: false })
+      } else if (this.state.userphoto === '') {
+        this.setState({ errormsg: 'Photo URL is missing!' })
+        this.setState({ loading: false })
+      } else if (this.state.userpassword === this.state.userpasswordSec) {
+        await createUserWithEmailAndPassword(auth, email, password)
+          .then((userCredential) => {
+            const user = userCredential.user
+            console.log('[INFO] Register successful!')
+            this.setState({ errormsg: '' })
+            this.props.handleUserLogin(user)
+            this.props.handleSelectScreen('home')
+            this.setState({ loading: false })
+          })
+          .catch((error) => {
+            const errorCode = error.code
+            switch (error.code) {
+              case 'auth/invalid-email':
+                this.setState({ errormsg: 'Invalid email!' })
+                this.setState({ loading: false })
+                break
+              case 'auth/weak-password':
+                this.setState({ errormsg: 'Weak password!' })
+                this.setState({ loading: false })
+                break
+              case 'auth/email-already-in-use':
+                this.setState({ errormsg: 'Email was already used!' })
+                this.setState({ loading: false })
+                break
+              case 'auth/internal-error':
+                this.setState({ errormsg: 'Internal error' })
+                this.setState({ loading: false })
+                break
+              case 'auth/missing-email':
+                this.setState({ errormsg: 'Email is missing!' })
+                this.setState({ loading: false })
+                break
+              case 'auth/network-request-failed':
+                this.setState({ errormsg: 'Internet connection failed!' })
+                this.setState({ loading: false })
+                break
+              default:
+                this.setState({ loading: false })
+                break
+            }
+            console.log('[ERROR] ' + errorCode)
+          })
+      } else {
+        this.setState({ errormsg: 'Password are not the same!' })
+        this.setState({ loading: false })
+      }
     }
 
     //MAIN return
@@ -79,12 +97,22 @@ class Register extends Component {
               <br />
               <input
                 className="LoginInput"
+                value={this.state.username}
+                onChange={(event) =>
+                  this.setState({ username: event.target.value })
+                }
+                type="text"
+                placeholder="Username"
+              />
+              <br />
+              <input
+                className="LoginInput"
                 value={this.state.useremail}
                 onChange={(event) =>
                   this.setState({ useremail: event.target.value })
                 }
                 type="text"
-                placeholder="Type email"
+                placeholder="Email"
               />
               <br />
               <input
@@ -94,7 +122,27 @@ class Register extends Component {
                   this.setState({ userpassword: event.target.value })
                 }
                 type="password"
-                placeholder="Type password"
+                placeholder="Password"
+              />
+              <br />
+              <input
+                className="LoginInput"
+                value={this.state.userpasswordSec}
+                onChange={(event) =>
+                  this.setState({ userpasswordSec: event.target.value })
+                }
+                type="password"
+                placeholder="Repeat password"
+              />
+              <br />
+              <input
+                className="LoginInput"
+                value={this.state.userphoto}
+                onChange={(event) =>
+                  this.setState({ userphoto: event.target.value })
+                }
+                type="text"
+                placeholder="Photo URL"
               />
               <br />
               <br />
