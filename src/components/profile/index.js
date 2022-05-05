@@ -24,11 +24,9 @@ const Profile = (props, { onLoad }) => {
   const [userData, setUserData] = useState()
   const [username, setUsername] = useState()
   const [userphoto, setUserphoto] = useState()
-
   function getUsername() {
     const citiesRef = collection(db, 'users')
     const q = query(citiesRef, where('email', '==', props.user.email))
-
     getDocs(q).then((response) => {
       const usrs = response.docs.map((doc) => ({
         data: doc.data(),
@@ -43,6 +41,7 @@ const Profile = (props, { onLoad }) => {
     getUsername()
   }, [])
 
+  //Loading Function
   const [loading, setLoading] = useState(false)
   const handleLoading = (status) => {
     if (status === true) {
@@ -52,6 +51,7 @@ const Profile = (props, { onLoad }) => {
     }
   }
 
+  //Main return
   if (!loading) {
     return (
       <>
