@@ -21,7 +21,6 @@ class Home extends Component {
     const auth = getAuth()
 
     const handleLoading = (status) => {
-      console.log('state is ' + status)
       if (status === true) {
         this.setState({ loading: true })
       } else {

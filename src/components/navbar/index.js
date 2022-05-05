@@ -11,7 +11,6 @@ const Navbar = (props, { onLoad }) => {
 
   //LogOut FUNCTION
   function handleLogout(user, onLogout, onScreen) {
-    //setLoading(true)
     props.onLoad(true)
     onLogout(user)
     auth
@@ -20,12 +19,10 @@ const Navbar = (props, { onLoad }) => {
         console.log('[INFO] User LogedOut')
         onScreen('login')
         props.onLoad(false)
-        //setLoading(false)
       })
       .catch(function (error) {
         console.log('[ERROR] ' + error)
         props.onLoad(false)
-        //setLoading(false)
       })
   }
 
