@@ -5,6 +5,17 @@ import './loading.css'
 const LoadingScreen = () => {
   return (
     <div className="loading-screen">
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
       <h1
         className="LogoLabel"
         style={{ cursor: 'default', fontSize: 100, textAlign: 'center' }}
