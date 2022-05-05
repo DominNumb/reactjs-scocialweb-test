@@ -1,14 +1,50 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../navbar'
 import LoadingScreen from '../loading'
+
+//FIREBASE
+import {
+  collection,
+  query,
+  where,
+  getFirestore,
+  getDocs,
+  doc,
+} from 'firebase/firestore'
+import { initializeApp } from 'firebase/app'
 
 //REDUX
 import { connect } from 'react-redux'
 
 const Profile = (props, { onLoad }) => {
+  const app = initializeApp(props.firebaseConfig)
+  const db = getFirestore(app)
+
+  //USER INFO
+  const [userData, setUserData] = useState()
+  const [username, setUsername] = useState()
+  const [userphoto, setUserphoto] = useState()
+
+  function getUsername() {
+    const citiesRef = collection(db, 'users')
+    const q = query(citiesRef, where('email', '==', props.user.email))
+
+    getDocs(q).then((response) => {
+      const usrs = response.docs.map((doc) => ({
+        data: doc.data(),
+        id: doc.id,
+      }))
+      setUserData(usrs)
+      setUsername(usrs.map((user) => user.data.username))
+      setUserphoto(usrs.map((user) => user.data.photoURL))
+    })
+  }
+  useEffect(() => {
+    getUsername()
+  }, [])
+
   const [loading, setLoading] = useState(false)
   const handleLoading = (status) => {
-    alert(status)
     if (status === true) {
       setLoading(true)
     } else {
@@ -16,7 +52,7 @@ const Profile = (props, { onLoad }) => {
     }
   }
 
-  if (!this.state.loading) {
+  if (!loading) {
     return (
       <>
         <div>
@@ -24,146 +60,146 @@ const Profile = (props, { onLoad }) => {
             <Navbar onLoad={handleLoading} />
           </header>
           <div className="container">
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <div>Cs</div>
-            <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a> <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a> <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a> <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a> <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a> <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a> <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a> <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a>
-            <a>Cs</a>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>Your username: {username}</div>
+            <div>.</div>
+            <img src={userphoto} width="240px" height="240px" />
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <a>.</a>
+            <a>.</a>
+            <a>.</a>
+            <a>.</a> <a>.</a>
+            <a>.</a>
+            <a>.</a>
+            <a>.</a>
+            <a>.</a>
+            <a>.</a>
+            <a>.</a> <a>.</a>
+            <a>.</a>
+            <a>.</a>
+            <a>.</a>
+            <a>.</a>
+            <a>.</a>
+            <a>.</a> <a>.</a>
+            <a>.</a>
+            <a>.</a>
+            <a>.</a>
+            <a>.</a>
+            <a>.</a>
+            <a>.</a> <a>.</a>
+            <a>.</a>
+            <a>.</a>
+            <a>.</a>
+            <a>.</a>
+            <a>.</a>
+            <a>.</a> <a>.</a>
+            <a>.</a>
+            <a>.</a>
+            <a>.</a>
+            <a>.</a>
+            <a>.</a>
+            <a>.</a> <a>.</a>
+            <a>.</a>
+            <a>.</a>
+            <a>.</a>
+            <a>.</a>
+            <a>.</a>
+            <a>.</a> <a>.</a>
+            <a>.</a>
+            <a>.</a>
+            <a>.</a>
+            <a>.</a>
+            <a>.</a>
+            <a>.</a>
           </div>
         </div>
       </>
@@ -177,6 +213,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     slscreen: state.selectedScreen.slscreen,
+    firebaseConfig: state.firebaseConfig,
   }
 }
 function mapDispatchToProps(dispatch) {
