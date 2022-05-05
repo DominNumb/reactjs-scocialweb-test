@@ -52,6 +52,10 @@ class Login extends Component {
               this.setState({ errormsg: 'Internal error' })
               this.setState({ loading: false })
               break
+            case 'auth/network-request-failed':
+              this.setState({ errormsg: 'Internet connection failed!' })
+              this.setState({ loading: false })
+              break
             default:
               this.setState({ loading: false })
               break

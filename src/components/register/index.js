@@ -55,6 +55,10 @@ class Register extends Component {
               this.setState({ errormsg: 'Email is missing!' })
               this.setState({ loading: false })
               break
+            case 'auth/network-request-failed':
+              this.setState({ errormsg: 'Internet connection failed!' })
+              this.setState({ loading: false })
+              break
             default:
               this.setState({ loading: false })
               break
