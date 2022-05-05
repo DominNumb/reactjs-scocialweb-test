@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './navbar.css'
 
 //REDUX
@@ -6,23 +6,26 @@ import { connect } from 'react-redux'
 import { getAuth } from 'firebase/auth'
 
 //MAIN NAVBAR
-const Navbar = (props) => {
+const Navbar = (props, { onLoad }) => {
   const auth = getAuth()
 
   //LogOut FUNCTION
   function handleLogout(user, onLogout, onScreen) {
-    props.handleSetLoading(true)
+    //setLoading(true)
+    props.onLoad(true)
     onLogout(user)
     auth
       .signOut()
       .then(function () {
         console.log('[INFO] User LogedOut')
         onScreen('login')
-        props.handleSetLoading(false)
+        props.onLoad(false)
+        //setLoading(false)
       })
       .catch(function (error) {
         console.log('[ERROR] ' + error)
-        props.handleSetLoading(false)
+        props.onLoad(false)
+        //setLoading(false)
       })
   }
 
@@ -105,7 +108,6 @@ function mapStateToProps(state) {
     firebaseConfig: state.firebaseConfig,
     user: state.user,
     slscreen: state.selectedScreen.slscreen,
-    usrLoading: state.loadingScreen.usrLoading,
   }
 }
 function mapDispatchToProps(dispatch) {
@@ -115,9 +117,6 @@ function mapDispatchToProps(dispatch) {
     },
     handleSelectScreen: (screen) => {
       dispatch({ type: 'USER_SCREEN', data: screen })
-    },
-    handleSetLoading: (loading) => {
-      dispatch({ type: 'USER_LOADING', data: loading })
     },
   }
 }
