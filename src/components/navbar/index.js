@@ -77,25 +77,17 @@ const Navbar = (props, { onLoad }) => {
             </a>
           </li>
           <li>
-            {props.slscreen === 'profile' ? (
-              /* eslint-disable-next-line */
-              <a
-                href="#"
-                style={{ color: '#c30099' }}
-                onClick={() => props.handleSelectScreen('profile')}
-              >
-                Profile
-              </a>
-            ) : (
-              /* eslint-disable-next-line */
-              <a
-                href="#"
-                style={{ color: 'white' }}
-                onClick={() => props.handleSelectScreen('profile')}
-              >
-                Profile
-              </a>
-            )}
+            <a
+              href="#"
+              style={
+                props.slscreen === 'profile'
+                  ? { color: '#c30099' }
+                  : { color: 'white' }
+              }
+              onClick={() => props.handleSelectScreen('profile')}
+            >
+              Profile
+            </a>
           </li>
           <li>
             {/* eslint-disable-next-line */}
