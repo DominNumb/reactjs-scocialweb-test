@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import './register.css'
 import LoadingScreen from '../loading'
+
 //REDUX
 import { connect } from 'react-redux'
 
 //FIREBASE
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
+import { initializeApp } from 'firebase/app'
 
 class Register extends Component {
   constructor(props) {
@@ -13,6 +16,7 @@ class Register extends Component {
     this.state = {
       username: '',
       userphoto: '',
+      userurl: '',
       useremail: '',
       userpassword: '',
       userpasswordSec: '',
@@ -22,6 +26,8 @@ class Register extends Component {
   }
   render() {
     const auth = getAuth()
+    const app = initializeApp(this.props.firebaseConfig)
+    const storage = getStorage(app)
 
     //Register function
     const handleRegister = async (email, password) => {
@@ -42,6 +48,8 @@ class Register extends Component {
             const user = userCredential.user
             console.log('[INFO] Register successful!')
             this.setState({ errormsg: '' })
+            handlePicSubmit()
+            //HERE NEED TO UPDATE USER INFO WITH PHOTO URL <----------------------- FIX
             this.props.handleUserLogin(user)
             this.props.handleSelectScreen('home')
             this.setState({ loading: false })
@@ -85,6 +93,30 @@ class Register extends Component {
       }
     }
 
+    //Profile PIC Functions
+    const handlePicChange = (event) => {
+      if (event.target.files[0]) {
+        this.setState({ userphoto: event.target.files[0] })
+      }
+    }
+    const handlePicSubmit = () => {
+      const imageRef = ref(storage, 'users/' + this.state.useremail + '/image')
+      uploadBytes(imageRef, this.state.userphoto)
+        .then(() => {
+          getDownloadURL(imageRef)
+            .then((url) => {
+              this.setState({ userurl: url })
+              console.log('[INFO] Photo uploaded to the storage!')
+            })
+            .catch((error) => {
+              console.log('[ERROR] GetURL: ', error.message)
+            })
+        })
+        .catch((error) => {
+          console.log('[ERROR] UploadBytes: ', error.message)
+        })
+    }
+
     //MAIN return
     if (!this.state.loading) {
       return (
@@ -94,7 +126,7 @@ class Register extends Component {
               <h1 className="LogoLabel" style={{ cursor: 'default' }}>
                 Register
               </h1>
-              <br />
+
               <input
                 className="LoginInput"
                 value={this.state.username}
@@ -135,15 +167,26 @@ class Register extends Component {
                 placeholder="Repeat password"
               />
               <br />
+              <br />
+              <br />
+              <br />
+              <span
+                style={{
+                  color: 'rgba(57, 54, 57, 0.805)',
+                  fontWeight: 'bold',
+                }}
+              >
+                Select profile picture:
+              </span>
+              <br />
               <input
                 className="LoginInput"
-                value={this.state.userphoto}
-                onChange={(event) =>
-                  this.setState({ userphoto: event.target.value })
-                }
-                type="text"
-                placeholder="Photo URL"
+                onChange={handlePicChange}
+                type="file"
+                placeholder="Photo"
               />
+
+              <br />
               <br />
               <br />
               <div className="LoginLabel">
@@ -160,8 +203,6 @@ class Register extends Component {
                 Register
               </span>
             </div>
-            <br />
-            <br />
             <br />
             <br />
             <br />
