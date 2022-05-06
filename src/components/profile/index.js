@@ -56,9 +56,6 @@ const Profile = (props, { onLoad }) => {
     return (
       <>
         <div>
-          <header className="site-header sticky-top ">
-            <Navbar onLoad={handleLoading} />
-          </header>
           <div className="container">
             <div>.</div>
             <div>.</div>

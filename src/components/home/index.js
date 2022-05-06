@@ -33,9 +33,6 @@ class Home extends Component {
       return (
         <>
           <div>
-            <header className="site-header sticky-top ">
-              <Navbar onLoad={handleLoading} />
-            </header>
             <div className="container">
               <br />
               <h1>Home screen</h1>

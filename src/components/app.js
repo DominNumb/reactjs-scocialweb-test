@@ -12,12 +12,14 @@ import { connect } from 'react-redux'
 import { initializeApp } from 'firebase/app'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import LoadingScreen from './loading'
+import Navbar from './navbar'
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       userIsSignedUp: undefined,
+      loading: false,
     }
   }
 
@@ -42,12 +44,32 @@ class App extends Component {
       })
     }
 
+    //LOADING FUNC
+    const handleLoading = (status) => {
+      if (status === true) {
+        this.setState({ loading: true })
+      } else {
+        this.setState({ loading: false })
+      }
+    }
+
     //Open HOME or LOGIN screen depand if user is signedin
     if (this.state.userIsSignedUp === true) {
       return (
         <div className="App">
-          {this.props.slscreen === 'home' && <Home />}
-          {this.props.slscreen === 'profile' && <Profile />}
+          <header className="site-header sticky-top ">
+            <Navbar onLoad={handleLoading} />
+          </header>
+          {this.props.slscreen === 'home' && (
+            <>
+              <Home />
+            </>
+          )}
+          {this.props.slscreen === 'profile' && (
+            <>
+              <Profile />
+            </>
+          )}
         </div>
       )
     } else if (this.state.userIsSignedUp === false) {
