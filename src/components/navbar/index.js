@@ -23,9 +23,9 @@ const Navbar = (props, { onLoad }) => {
   const db = getFirestore(app)
 
   //USER INFO
-  const [userData, setUserData] = useState()
-  const [username, setUsername] = useState()
-  const [userphoto, setUserphoto] = useState()
+  const [userData, setUserData] = useState(null)
+  const [username, setUsername] = useState(null)
+  const [userphoto, setUserphoto] = useState(null)
   function getUsername() {
     const citiesRef = collection(db, 'users')
     const q = query(citiesRef, where('email', '==', props.user.email))
