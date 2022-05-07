@@ -276,7 +276,8 @@ class Register extends Component {
                 className="LoginInput"
                 onChange={handlePicChange}
                 type="file"
-                placeholder="Photo"
+                placeholder="Image"
+                accept="image/png, image/gif, image/jpeg"
               />
 
               <br />
