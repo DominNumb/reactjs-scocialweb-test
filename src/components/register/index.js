@@ -8,6 +8,15 @@ import { connect } from 'react-redux'
 //FIREBASE
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
+import {
+  collection,
+  query,
+  where,
+  getFirestore,
+  getDocs,
+  doc,
+  addDoc,
+} from 'firebase/firestore'
 import { initializeApp } from 'firebase/app'
 
 class Register extends Component {
@@ -27,11 +36,36 @@ class Register extends Component {
   render() {
     const auth = getAuth()
     const app = initializeApp(this.props.firebaseConfig)
+    const db = getFirestore(app)
     const storage = getStorage(app)
 
-    //Register function
-    const handleRegister = async (email, password) => {
+    // #1 Check from DB  _______________________________________________________________________________________
+    const handleCheckUsername = async (usrMail, usrPass) => {
       this.setState({ loading: true })
+      const usersRef = collection(db, 'users')
+      const q = query(
+        usersRef,
+        where('username', '==', this.state.username.toLowerCase()),
+      )
+      await getDocs(q).then((response) => {
+        const usrs = response.docs.map((doc) => ({
+          data: doc.data(),
+          id: doc.id,
+        }))
+        const vysledek = usrs.map((user) => user.data.username)
+        if (vysledek.toString() === this.state.username.toLowerCase()) {
+          console.log('[ERROR] Username is unavaileble!')
+          this.setState({ errormsg: 'Username is taken!' })
+          this.setState({ loading: false })
+        } else {
+          console.log('[INFO] Username is availeble!')
+          handleRegister(usrMail, usrPass)
+        }
+      })
+    }
+
+    // #2 Register FUNCTION  ____________________________________________________________________________________
+    const handleRegister = async (email, password) => {
       //Check if is not second password empty
       if (this.state.userpassword === '') {
         this.setState({ errormsg: 'Password is missing!' })
@@ -48,11 +82,10 @@ class Register extends Component {
             const user = userCredential.user
             console.log('[INFO] Register successful!')
             this.setState({ errormsg: '' })
-            handlePicSubmit()
-            //HERE NEED TO UPDATE USER INFO WITH PHOTO URL <----------------------- FIX
+            handlePicSubmit() //ADD inside new user func in DB
+            //open new FUNC that update user info with username <----------------------- X FIX X
             this.props.handleUserLogin(user)
             this.props.handleSelectScreen('home')
-            this.setState({ loading: false })
           })
           .catch((error) => {
             const errorCode = error.code
@@ -107,14 +140,30 @@ class Register extends Component {
             .then((url) => {
               this.setState({ userurl: url })
               console.log('[INFO] Photo uploaded to the storage!')
+              handleCreateUser(url)
+              //HERE NEED TO UPDATE user info in DB with photoURL <---------------------------- X FIX X
             })
             .catch((error) => {
               console.log('[ERROR] GetURL: ', error.message)
+              this.setState({ loading: false })
             })
         })
         .catch((error) => {
           console.log('[ERROR] UploadBytes: ', error.message)
+          this.setState({ loading: false })
         })
+    }
+
+    const handleCreateUser = (phtURL) => {
+      const usersRef = collection(db, 'users')
+      addDoc(usersRef, {
+        email: this.state.useremail,
+        photoURL: phtURL,
+        username: this.state.username,
+      }).then(() => {
+        console.log('[INFO] Created NEW USER!!')
+        this.setState({ loading: false })
+      })
     }
 
     //MAIN return
@@ -197,7 +246,10 @@ class Register extends Component {
                 className="button-27"
                 style={{ width: 200 }}
                 onClick={() =>
-                  handleRegister(this.state.useremail, this.state.userpassword)
+                  handleCheckUsername(
+                    this.state.useremail,
+                    this.state.userpassword,
+                  )
                 }
               >
                 Register
