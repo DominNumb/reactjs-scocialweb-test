@@ -26,7 +26,10 @@ const Profile = (props, { onLoad }) => {
   const [userphoto, setUserphoto] = useState(null)
   function getUsername() {
     const citiesRef = collection(db, 'users')
-    const q = query(citiesRef, where('email', '==', props.user.email))
+    const q = query(
+      citiesRef,
+      where('email', '==', props.user.email.toLowerCase()),
+    )
     getDocs(q).then((response) => {
       const usrs = response.docs.map((doc) => ({
         data: doc.data(),

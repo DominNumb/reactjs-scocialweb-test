@@ -133,7 +133,10 @@ class Register extends Component {
       }
     }
     const handlePicSubmit = () => {
-      const imageRef = ref(storage, 'users/' + this.state.useremail + '/image')
+      const imageRef = ref(
+        storage,
+        'users/' + this.state.useremail.toLowerCase() + '/image',
+      )
       uploadBytes(imageRef, this.state.userphoto)
         .then(() => {
           getDownloadURL(imageRef)
@@ -157,7 +160,7 @@ class Register extends Component {
     const handleCreateUser = (phtURL) => {
       const usersRef = collection(db, 'users')
       addDoc(usersRef, {
-        email: this.state.useremail,
+        email: this.state.useremail.toLowerCase(),
         photoURL: phtURL,
         username: this.state.username,
       }).then(() => {
