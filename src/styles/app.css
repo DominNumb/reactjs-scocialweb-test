@@ -9,7 +9,7 @@
   align-items: center;
   justify-content: center;
   background: #121212;
-  color: #8e3ea0;
+  color: #c50fee;
   font-size: 19;
   margin: 10;
 }
@@ -25,7 +25,7 @@
   color: rgb(224, 220, 220);
 }
 .LogoLabel {
-  text-shadow: 0 0 3px #fb00ff, 0 0 15px #ff0000, 0 0 35px #8000ff;
+  text-shadow: 0 0 1.5px #fb00ff, 0 0 15px #ff0000, 0 0 35px #8000ff;
   margin: 50px;
   color: #df02e3ec;
   font-weight: bolder;

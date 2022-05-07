@@ -307,7 +307,7 @@ class Register extends Component {
               <span style={{ cursor: 'default' }}>You have an account? </span>
               <span
                 style={{
-                  color: 'purple',
+                  color: 'rgb(245, 66, 245)',
                   fontWeight: 'bold',
                   cursor: 'pointer',
                 }}
