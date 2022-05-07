@@ -1,0 +1,6 @@
+.ProfileImage {
+  border-radius: 10%;
+  color: rgba(160, 6, 255, 0.57);
+  border-style: dashed;
+  box-shadow: 0px 0px 300px 20px rgba(42, 6, 223, 0.475);
+}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../navbar'
 import LoadingScreen from '../loading'
+import './profile.css'
 
 //FIREBASE
 import {
@@ -60,13 +61,9 @@ const Profile = (props, { onLoad }) => {
       <>
         <div>
           <div className="container">
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>Your username: {username}</div>
-            <div>.</div>
+            <div className="LogoLabel">{username}</div>
             <img
+              className="ProfileImage"
               decoding="async"
               loading="lazy"
               src={userphoto}
@@ -160,52 +157,62 @@ const Profile = (props, { onLoad }) => {
             <div>.</div>
             <div>.</div>
             <div>.</div>
-            <a>.</a>
-            <a>.</a>
-            <a>.</a>
-            <a>.</a> <a>.</a>
-            <a>.</a>
-            <a>.</a>
-            <a>.</a>
-            <a>.</a>
-            <a>.</a>
-            <a>.</a> <a>.</a>
-            <a>.</a>
-            <a>.</a>
-            <a>.</a>
-            <a>.</a>
-            <a>.</a>
-            <a>.</a> <a>.</a>
-            <a>.</a>
-            <a>.</a>
-            <a>.</a>
-            <a>.</a>
-            <a>.</a>
-            <a>.</a> <a>.</a>
-            <a>.</a>
-            <a>.</a>
-            <a>.</a>
-            <a>.</a>
-            <a>.</a>
-            <a>.</a> <a>.</a>
-            <a>.</a>
-            <a>.</a>
-            <a>.</a>
-            <a>.</a>
-            <a>.</a>
-            <a>.</a> <a>.</a>
-            <a>.</a>
-            <a>.</a>
-            <a>.</a>
-            <a>.</a>
-            <a>.</a>
-            <a>.</a> <a>.</a>
-            <a>.</a>
-            <a>.</a>
-            <a>.</a>
-            <a>.</a>
-            <a>.</a>
-            <a>.</a>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <div>.</div>
+            <br />
+            <a>What are you looking for?!</a>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
           </div>
         </div>
       </>
