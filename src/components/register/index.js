@@ -305,7 +305,7 @@ class Register extends Component {
               )}
 
               <br />
-              <br />
+
               <br />
               <div className="LoginLabel">
                 <span style={{ color: '#b71c1c' }}>{this.state.errormsg}</span>
@@ -327,9 +327,7 @@ class Register extends Component {
               )}
             </div>
             <br />
-            <br />
-            <br />
-            <br />
+
             <div>
               <span style={{ cursor: 'default' }}>You have an account? </span>
               <span
