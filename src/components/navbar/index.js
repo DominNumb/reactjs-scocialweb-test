@@ -63,6 +63,16 @@ const Navbar = (props, { onLoad }) => {
       })
   }
 
+  //SIDEBAR
+  function openNav() {
+    document.getElementById('mySidebar').style.width = '250px'
+    document.getElementById('main').style.marginLeft = '250px'
+  }
+  function closeNav() {
+    document.getElementById('mySidebar').style.width = '0'
+    document.getElementById('main').style.marginLeft = '0'
+  }
+
   //MAIN RETURN
   return (
     <>
@@ -124,6 +134,73 @@ const Navbar = (props, { onLoad }) => {
           </li>
         </div>
       </ul>
+      <div className="sidebarMain ShadowNavbar">
+        <div id="mySidebar" className="sidebar">
+          <a
+            href="javascript:void(0)"
+            className="closebtn"
+            onClick={() => closeNav()}
+          >
+            ×
+          </a>
+          <a
+            href="#"
+            className="LogoNavbar"
+            onClick={() => props.handleSelectScreen('home')}
+          >
+            Social Web
+          </a>
+          <a
+            href="#"
+            style={
+              props.slscreen === 'profile'
+                ? { color: '#c30099' }
+                : { color: 'white' }
+            }
+            onClick={() => props.handleSelectScreen('profile')}
+          >
+            Profile
+          </a>
+          <a href="#" style={{ color: 'white' }}>
+            Messages
+          </a>
+          <a style={{ padding: '0' }}>
+            {' '}
+            <img
+              style={{
+                marginTop: '100px',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginLeft: '97.5px',
+              }}
+              decoding="async"
+              loading="lazy"
+              src={userphoto}
+              className="NavbarPhoto"
+            />
+          </a>
+
+          <a
+            className="button-27"
+            style={{ margin: '30px', padding: '8px 8px 8px 8px' }}
+            onClick={() =>
+              handleLogout(
+                props.user,
+                props.handleUserLogedOut,
+                props.handleSelectScreen,
+              )
+            }
+          >
+            LogOut
+          </a>
+        </div>
+
+        <div id="main">
+          <button className="openbtn" onClick={() => openNav()}>
+            ☰ Open Sidebar
+          </button>
+        </div>
+      </div>
       <br />
       <br />
       <br />

@@ -84,3 +84,117 @@ li a {
   -webkit-backdrop-filter: blur(0.5rem);
   backdrop-filter: blur(0.5rem);
 }
+
+@media screen and (max-width: 660px) {
+  .NavbarBlur {
+    display: none !important;
+  }
+  .sidebarMain {
+    text-align: left !important;
+    position: fixed;
+    width: 100%;
+    background-color: #121212dc;
+    -webkit-backdrop-filter: blur(0.5rem);
+    backdrop-filter: blur(0.5rem);
+  }
+}
+@media screen and (min-width: 661px) {
+  .sidebarMain {
+    display: none !important;
+  }
+}
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+
+  background-color: #121212dc;
+  -webkit-backdrop-filter: blur(0.5rem);
+  backdrop-filter: blur(0.5rem);
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.sidebar .LogoNavbar {
+  text-shadow: 0 0 5px #fb00ff, 0 0 7px #ff0000, 0 0 15px #8000ff;
+
+  color: #fb00ffca;
+  font-weight: bolder;
+  cursor: pointer;
+  display: inline-block;
+
+  margin-right: 1rem;
+  font-size: 1.25rem;
+  line-height: inherit;
+  white-space: nowrap;
+}
+.LogoNavbar:disabled {
+  pointer-events: none;
+}
+.LogoNavbar:hover {
+  text-shadow: 0 0 5px #0526ff, 0 0 15px #8000ff;
+  color: #0119ba;
+  transform: translateY(-1px);
+}
+.LogoNavbar:active {
+  text-shadow: none;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #12121200;
+  color: rgba(212, 15, 234, 0.831);
+  padding: 10px 15px;
+  border: none;
+}
+.mySidebar {
+  -webkit-backdrop-filter: blur(0.5rem);
+  backdrop-filter: blur(0.5rem);
+}
+.openbtn:hover {
+  text-shadow: 0 0 5px #ee05ff, 0 0 15px #8000ff;
+}
+
+#main {
+  transition: margin-left 0.5s;
+  padding: 5px;
+  -webkit-backdrop-filter: blur(0.5rem);
+  backdrop-filter: blur(0.5rem);
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {
+    padding-top: 15px;
+  }
+  .sidebar a {
+    font-size: 18px;
+  }
+}
