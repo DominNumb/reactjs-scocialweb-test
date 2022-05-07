@@ -30,6 +30,7 @@ class Register extends Component {
       userpassword: '',
       userpasswordSec: '',
       errormsg: '',
+      userLoginDATA: '',
       loading: false,
     }
   }
@@ -82,10 +83,9 @@ class Register extends Component {
             const user = userCredential.user
             console.log('[INFO] Register successful!')
             this.setState({ errormsg: '' })
+            this.setState({ userLoginDATA: user })
             handlePicSubmit() //ADD inside new user func in DB
             //open new FUNC that update user info with username <----------------------- X FIX X
-            this.props.handleUserLogin(user)
-            this.props.handleSelectScreen('home')
           })
           .catch((error) => {
             const errorCode = error.code
@@ -163,6 +163,8 @@ class Register extends Component {
       }).then(() => {
         console.log('[INFO] Created NEW USER!!')
         this.setState({ loading: false })
+        this.props.handleUserLogin(this.state.userLoginDATA)
+        this.props.handleSelectScreen('home')
       })
     }
 
