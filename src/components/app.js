@@ -23,26 +23,36 @@ class App extends Component {
     }
   }
 
-  render() {
-    // eslint-disable-next-line
-    const app = initializeApp(this.props.firebaseConfig)
+  componentDidMount() {
     const auth = getAuth()
+    console.log('[INFO] App did mount!')
 
     //Check if USER is already loged in
     if (this.state.userIsSignedUp === undefined) {
       onAuthStateChanged(auth, (user) => {
-        if (user) {
-          this.setState({ userIsSignedUp: true })
-          console.log('[INFO] User was already logedIn')
-          this.props.handleSelectScreen('home')
-          this.props.handleUserLogin(user)
+        if (this.props.athStat === true) {
+          console.log('[AUTH] ON: Processing...')
+          if (user) {
+            this.setState({ userIsSignedUp: true })
+            console.log('[INFO] User was already logedIn')
+            this.props.handleSelectScreen('home')
+            this.props.handleUserLogin(user)
+          } else {
+            console.log("[INFO] User isn't logedIn")
+            this.props.handleSelectScreen('login')
+            this.setState({ userIsSignedUp: false })
+          }
         } else {
-          console.log("[INFO] User isn't logedIn")
-          this.props.handleSelectScreen('login')
-          this.setState({ userIsSignedUp: false })
+          console.log('[AUTH] OFF')
         }
       })
     }
+  }
+
+  render() {
+    // eslint-disable-next-line
+    const app = initializeApp(this.props.firebaseConfig)
+    const auth = getAuth()
 
     //LOADING FUNC
     const handleLoading = (status) => {
@@ -82,7 +92,7 @@ class App extends Component {
       } else if (this.props.slscreen === 'register') {
         return (
           <div className="App">
-            <Register />
+            <Register onLogin={() => this.setState({ userIsSignedUp: true })} />
           </div>
         )
       }
@@ -99,6 +109,7 @@ function mapStateToProps(state) {
     user: state.user,
     slscreen: state.selectedScreen.slscreen,
     usrLoading: state.loadingScreen.usrLoading,
+    athStat: state.authStatus.authstat,
   }
 }
 
@@ -110,6 +121,9 @@ function mapDispatchToProps(dispatch) {
     },
     handleSetLoading: (loading) => {
       dispatch({ type: 'USER_LOADING', data: loading })
+    },
+    handleSetAuthStatus: (stat) => {
+      dispatch({ type: 'AUTH_STATUS', data: stat })
     },
   }
 }

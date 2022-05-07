@@ -6,7 +6,11 @@ import LoadingScreen from '../loading'
 import { connect } from 'react-redux'
 
 //FIREBASE
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from 'firebase/auth'
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import {
   collection,
@@ -43,6 +47,7 @@ class Register extends Component {
     // #1 Check from DB  _______________________________________________________________________________________
     const handleCheckUsername = async (usrMail, usrPass) => {
       this.setState({ loading: true })
+      this.props.handleSetAuthStatus(false)
       const usersRef = collection(db, 'users')
       const q = query(
         usersRef,
@@ -71,12 +76,15 @@ class Register extends Component {
       if (this.state.userpassword === '') {
         this.setState({ errormsg: 'Password is missing!' })
         this.setState({ loading: false })
+        this.props.handleSetAuthStatus(true)
       } else if (this.state.userpasswordSec === '') {
         this.setState({ errormsg: 'Second password is missing!' })
         this.setState({ loading: false })
+        this.props.handleSetAuthStatus(true)
       } else if (this.state.userphoto === '') {
         this.setState({ errormsg: 'Photo URL is missing!' })
         this.setState({ loading: false })
+        this.props.handleSetAuthStatus(true)
       } else if (this.state.userpassword === this.state.userpasswordSec) {
         createUserWithEmailAndPassword(auth, email, password)
           .then((userCredential) => {
@@ -92,29 +100,36 @@ class Register extends Component {
               case 'auth/invalid-email':
                 this.setState({ errormsg: 'Invalid email!' })
                 this.setState({ loading: false })
+                this.props.handleSetAuthStatus(true)
                 break
               case 'auth/weak-password':
                 this.setState({ errormsg: 'Weak password!' })
                 this.setState({ loading: false })
+                this.props.handleSetAuthStatus(true)
                 break
               case 'auth/email-already-in-use':
                 this.setState({ errormsg: 'Email was already used!' })
                 this.setState({ loading: false })
+                this.props.handleSetAuthStatus(true)
                 break
               case 'auth/internal-error':
                 this.setState({ errormsg: 'Internal error' })
                 this.setState({ loading: false })
+                this.props.handleSetAuthStatus(true)
                 break
               case 'auth/missing-email':
                 this.setState({ errormsg: 'Email is missing!' })
                 this.setState({ loading: false })
+                this.props.handleSetAuthStatus(true)
                 break
               case 'auth/network-request-failed':
                 this.setState({ errormsg: 'Internet connection failed!' })
                 this.setState({ loading: false })
+                this.props.handleSetAuthStatus(true)
                 break
               default:
                 this.setState({ loading: false })
+                this.props.handleSetAuthStatus(true)
                 break
             }
             console.log('[ERROR] ' + errorCode)
@@ -122,6 +137,7 @@ class Register extends Component {
       } else {
         this.setState({ errormsg: 'Password are not the same!' })
         this.setState({ loading: false })
+        this.props.handleSetAuthStatus(true)
       }
     }
 
@@ -132,7 +148,7 @@ class Register extends Component {
       }
     }
 
-    //#3 Upload profile PIC
+    // #3 Upload profile PIC    ____________________________________________________________________________________
     const handlePicSubmit = () => {
       const imageRef = ref(
         storage,
@@ -149,15 +165,17 @@ class Register extends Component {
             .catch((error) => {
               console.log('[ERROR] GetURL: ', error.message)
               this.setState({ loading: false })
+              this.props.handleSetAuthStatus(true)
             })
         })
         .catch((error) => {
           console.log('[ERROR] UploadBytes: ', error.message)
           this.setState({ loading: false })
+          this.props.handleSetAuthStatus(true)
         })
     }
 
-    //#4 Create user to Firestore
+    // #4 Create user to Firestore    ____________________________________________________________________________________
     const handleCreateUser = (phtURL) => {
       const usersRef = collection(db, 'users')
       addDoc(usersRef, {
@@ -166,10 +184,30 @@ class Register extends Component {
         username: this.state.username,
       }).then(() => {
         console.log('[INFO] Created NEW USER!!')
-        this.setState({ loading: false })
+        this.props.handleSetAuthStatus(true)
         this.props.handleUserLogin(this.state.userLoginDATA)
-        this.props.handleSelectScreen('home')
+        handleLogin(this.state.useremail.toLowerCase(), this.state.userpassword) //# Stage 5
       })
+    }
+
+    // #5 Login function  ____________________________________________________________________________________
+    const handleLogin = async (email, password) => {
+      this.setState({ loading: true })
+      await signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          const user = userCredential.user
+          console.log('[INFO] Login successful!')
+          this.setState({ errormsg: '' })
+          this.props.handleUserLogin(user)
+          this.props.handleSelectScreen('home')
+          this.setState({ loading: false })
+          this.props.onLogin()
+        })
+        .catch((error) => {
+          const errorCode = error.code
+
+          console.log('[ERROR] ' + errorCode)
+        })
     }
 
     //MAIN return
@@ -299,6 +337,9 @@ function mapDispatchToProps(dispatch) {
     handleUserLogin: (user) => dispatch({ type: 'USER_LOGIN', data: user }),
     handleSelectScreen: (screen) => {
       dispatch({ type: 'USER_SCREEN', data: screen })
+    },
+    handleSetAuthStatus: (stat) => {
+      dispatch({ type: 'AUTH_STATUS', data: stat })
     },
   }
 }

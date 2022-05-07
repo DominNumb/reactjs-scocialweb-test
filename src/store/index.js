@@ -3,6 +3,7 @@ import appVersion from './version'
 import firebaseConfig from './firebase/config'
 import selectedScreen from './selectedScreen'
 import loadingScreen from './loading'
+import authStatus from './authStatus'
 
 const allReducers = {
   user,
@@ -10,6 +11,7 @@ const allReducers = {
   selectedScreen,
   firebaseConfig,
   loadingScreen,
+  authStatus,
 }
 
 const reducer = (state = allReducers, action) => {
@@ -26,6 +28,9 @@ const reducer = (state = allReducers, action) => {
       return newState
     case 'USER_LOADING':
       newState.loadingScreen.usrLoading = action.data
+      return newState
+    case 'AUTH_STATUS':
+      newState.authStatus.authstat = action.data
       return newState
     default:
       break
