@@ -28,7 +28,8 @@
   text-shadow: 0 0 1.5px #fb00ff, 0 0 15px #ff0000, 0 0 35px #8000ff;
   margin: 50px;
   color: #df02e3ec;
-  font-weight: bolder;
+  font-weight: bold;
+  font-size: 2.5rem;
 }
 .LoginInput {
   background-color: #121212;
@@ -39,6 +40,17 @@
   border-bottom: 2px solid #d206d67c;
   font-size: large;
   border-radius: 1px 1px 10px 10px;
+}
+.PhotoInput {
+  background-color: #121212;
+  margin: 10px;
+  color: #f1f1fc;
+  padding: 12px 12px;
+  border: none;
+  border-bottom: 2px solid #d206d67c;
+  font-size: large;
+  border-radius: 1px 1px 10px 10px;
+  width: 6.25rem;
 }
 ::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */

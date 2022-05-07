@@ -34,3 +34,6 @@
   bottom: 8px;
   background: currentColor;
 }
+input[type='file'] {
+  display: none;
+}

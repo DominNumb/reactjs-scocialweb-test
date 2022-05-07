@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import './register.css'
 import LoadingScreen from '../loading'
 
+//MUI
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate'
+import CheckIcon from '@mui/icons-material/Check'
+
 //REDUX
 import { connect } from 'react-redux'
 
@@ -36,6 +40,7 @@ class Register extends Component {
       errormsg: '',
       userLoginDATA: '',
       loading: false,
+      registerButton: false,
     }
   }
   render() {
@@ -145,6 +150,7 @@ class Register extends Component {
     const handlePicChange = (event) => {
       if (event.target.files[0]) {
         this.setState({ userphoto: event.target.files[0] })
+        this.setState({ registerButton: true })
       }
     }
 
@@ -272,13 +278,31 @@ class Register extends Component {
                 Select profile picture:
               </span>
               <br />
-              <input
-                className="LoginInput"
-                onChange={handlePicChange}
-                type="file"
-                placeholder="Image"
-                accept="image/png, image/gif, image/jpeg"
-              />
+              <br />
+
+              {this.state.registerButton ? (
+                <label style={{ cursor: 'pointer' }}>
+                  <input
+                    className="PhotoInput"
+                    type="file"
+                    placeholder="Image"
+                    onChange={handlePicChange}
+                    accept="image/png, image/gif, image/jpeg"
+                  />
+                  <CheckIcon color="success" fontSize="large" />
+                </label>
+              ) : (
+                <label style={{ cursor: 'pointer' }}>
+                  <input
+                    className="PhotoInput"
+                    type="file"
+                    placeholder="Image"
+                    onChange={handlePicChange}
+                    accept="image/png, image/gif, image/jpeg"
+                  />
+                  <AddPhotoAlternateIcon color="secondary" fontSize="large" />
+                </label>
+              )}
 
               <br />
               <br />
@@ -287,18 +311,20 @@ class Register extends Component {
                 <span style={{ color: '#b71c1c' }}>{this.state.errormsg}</span>
               </div>
               <br />
-              <span
-                className="button-27"
-                style={{ width: 200 }}
-                onClick={() =>
-                  handleCheckUsername(
-                    this.state.useremail,
-                    this.state.userpassword,
-                  )
-                }
-              >
-                Register
-              </span>
+              {this.state.registerButton && (
+                <span
+                  className="button-27"
+                  style={{ width: 200 }}
+                  onClick={() =>
+                    handleCheckUsername(
+                      this.state.useremail,
+                      this.state.userpassword,
+                    )
+                  }
+                >
+                  Register
+                </span>
+              )}
             </div>
             <br />
             <br />
