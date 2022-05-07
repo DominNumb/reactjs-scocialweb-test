@@ -60,13 +60,13 @@ class Register extends Component {
           this.setState({ loading: false })
         } else {
           console.log('[INFO] Username is availeble!')
-          handleRegister(usrMail, usrPass)
+          handleRegister(usrMail, usrPass) //# Stage 2
         }
       })
     }
 
     // #2 Register FUNCTION  ____________________________________________________________________________________
-    const handleRegister = async (email, password) => {
+    const handleRegister = (email, password) => {
       //Check if is not second password empty
       if (this.state.userpassword === '') {
         this.setState({ errormsg: 'Password is missing!' })
@@ -78,14 +78,13 @@ class Register extends Component {
         this.setState({ errormsg: 'Photo URL is missing!' })
         this.setState({ loading: false })
       } else if (this.state.userpassword === this.state.userpasswordSec) {
-        await createUserWithEmailAndPassword(auth, email, password)
+        createUserWithEmailAndPassword(auth, email, password)
           .then((userCredential) => {
             const user = userCredential.user
-            console.log('[INFO] Register successful!')
-            this.setState({ errormsg: '' })
+            //auth.signOut()
+            console.log('[INFO] Register to auth was successful!')
             this.setState({ userLoginDATA: user })
-            handlePicSubmit() //ADD inside new user func in DB
-            //open new FUNC that update user info with username <----------------------- X FIX X
+            handlePicSubmit() //# Stage 3
           })
           .catch((error) => {
             const errorCode = error.code
@@ -132,6 +131,8 @@ class Register extends Component {
         this.setState({ userphoto: event.target.files[0] })
       }
     }
+
+    //#3 Upload profile PIC
     const handlePicSubmit = () => {
       const imageRef = ref(
         storage,
@@ -143,8 +144,7 @@ class Register extends Component {
             .then((url) => {
               this.setState({ userurl: url })
               console.log('[INFO] Photo uploaded to the storage!')
-              handleCreateUser(url)
-              //HERE NEED TO UPDATE user info in DB with photoURL <---------------------------- X FIX X
+              handleCreateUser(url) //# Stage 4
             })
             .catch((error) => {
               console.log('[ERROR] GetURL: ', error.message)
@@ -157,6 +157,7 @@ class Register extends Component {
         })
     }
 
+    //#4 Create user to Firestore
     const handleCreateUser = (phtURL) => {
       const usersRef = collection(db, 'users')
       addDoc(usersRef, {
