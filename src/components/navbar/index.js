@@ -67,10 +67,12 @@ const Navbar = (props, { onLoad }) => {
   function openNav() {
     document.getElementById('mySidebar').style.width = '250px'
     document.getElementById('main').style.marginLeft = '250px'
+    document.getElementById('openbtn').style.display = 'none'
   }
   function closeNav() {
     document.getElementById('mySidebar').style.width = '0'
     document.getElementById('main').style.marginLeft = '0'
+    document.getElementById('openbtn').style.display = 'unset'
   }
 
   //MAIN RETURN
@@ -123,6 +125,7 @@ const Navbar = (props, { onLoad }) => {
             decoding="async"
             loading="lazy"
             src={userphoto}
+            style={{ marginRight: '30px' }}
             className="NavbarPhoto"
           />
           <li style={{ float: 'right' }}>
@@ -155,6 +158,7 @@ const Navbar = (props, { onLoad }) => {
           <a
             href="#"
             className="LogoNavbar"
+            style={{ fontSize: '30px', marginBottom: '40px' }}
             onClick={() => props.handleSelectScreen('home')}
           >
             Social Web
@@ -163,8 +167,8 @@ const Navbar = (props, { onLoad }) => {
             href="#"
             style={
               props.slscreen === 'profile'
-                ? { color: '#c30099' }
-                : { color: 'white' }
+                ? { color: '#c30099', marginBottom: '15px' }
+                : { color: 'white', marginBottom: '15px' }
             }
             onClick={() => props.handleSelectScreen('profile')}
           >
@@ -174,8 +178,8 @@ const Navbar = (props, { onLoad }) => {
             href="#"
             style={
               props.slscreen === 'messages'
-                ? { color: '#c30099' }
-                : { color: 'white' }
+                ? { color: '#c30099', marginBottom: '15px' }
+                : { color: 'white', marginBottom: '15px' }
             }
             onClick={() => props.handleSelectScreen('messages')}
           >
@@ -213,7 +217,7 @@ const Navbar = (props, { onLoad }) => {
         </div>
 
         <div id="main">
-          <button className="openbtn" onClick={() => openNav()}>
+          <button id="openbtn" className="openbtn" onClick={() => openNav()}>
             ☰ Open Sidebar
           </button>
         </div>
