@@ -8,12 +8,7 @@ const LoadingScreen = () => {
       <br />
       <br />
       <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+
       <br />
       <br />
       <h1
