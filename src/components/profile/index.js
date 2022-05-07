@@ -63,7 +63,13 @@ const Profile = (props, { onLoad }) => {
             <div>.</div>
             <div>Your username: {username}</div>
             <div>.</div>
-            <img src={userphoto} width="240px" height="240px" />
+            <img
+              decoding="async"
+              loading="lazy"
+              src={userphoto}
+              width="240px"
+              height="240px"
+            />
             <div>.</div>
             <div>.</div>
             <div>.</div>

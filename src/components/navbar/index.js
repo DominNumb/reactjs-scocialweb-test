@@ -97,7 +97,12 @@ const Navbar = (props, { onLoad }) => {
           </li>
         </div>
         <div>
-          <img src={userphoto} className="NavbarPhoto" />
+          <img
+            decoding="async"
+            loading="lazy"
+            src={userphoto}
+            className="NavbarPhoto"
+          />
           <li style={{ float: 'right' }}>
             {/* eslint-disable-next-line */}
             <a
