@@ -63,7 +63,7 @@ const Navbar = (props, { onLoad }) => {
   //MAIN RETURN
   return (
     <>
-      <ul>
+      <ul className="NavbarBlur">
         <div>
           <li>
             {/* eslint-disable-next-line */}
