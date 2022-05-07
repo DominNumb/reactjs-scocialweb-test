@@ -68,24 +68,26 @@ class App extends Component {
     if (this.state.userIsSignedUp === true) {
       return (
         <div className="App">
-          <header className="site-header sticky-top ">
-            <Navbar onLoad={handleLoading} />
-          </header>
-          {this.props.slscreen === 'home' && (
-            <>
-              <Home />
-            </>
-          )}
-          {this.props.slscreen === 'profile' && (
-            <>
-              <Profile />
-            </>
-          )}
-          {this.props.slscreen === 'messages' && (
-            <>
-              <MessagesScreen />
-            </>
-          )}
+          <div className="Main">
+            <header className="site-header sticky-top ">
+              <Navbar onLoad={handleLoading} />
+            </header>
+            {this.props.slscreen === 'home' && (
+              <>
+                <Home />
+              </>
+            )}
+            {this.props.slscreen === 'profile' && (
+              <>
+                <Profile />
+              </>
+            )}
+            {this.props.slscreen === 'messages' && (
+              <>
+                <MessagesScreen />
+              </>
+            )}
+          </div>
         </div>
       )
     } else if (this.state.userIsSignedUp === false) {

@@ -5,25 +5,24 @@ import './loading.css'
 const LoadingScreen = () => {
   return (
     <div className="loading-screen">
-      <br />
-      <br />
-      <br />
-
-      <br />
-      <br />
-      <h1
-        className="LogoLabel"
-        style={{ cursor: 'default', fontSize: 100, textAlign: 'center' }}
-      >
-        Social Web
-      </h1>
-      <p>
+      {/* <p>
         Loading...
         <br />
         <b>Please wait!</b>
         <br />
         <CircularProgress sx={{ marginTop: 1 }} color="secondary" />
-      </p>
+      </p> */}
+
+      <section>
+        <div className="shadow" />
+        <div className="bowl">
+          <div className="liquid" />
+        </div>
+      </section>
+      <br />
+      <br />
+      <br />
+      <br />
     </div>
   )
 }

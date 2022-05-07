@@ -1,5 +1,4 @@
 .App {
-  text-align: center;
   position: absolute;
   top: 0;
   left: 0;
@@ -12,6 +11,13 @@
   color: #c50fee;
   font-size: 19;
   margin: 10;
+}
+
+.App .Main {
+  text-align: center;
+}
+.App .LoginForm {
+  text-align: center;
 }
 
 /* LOGIN */
