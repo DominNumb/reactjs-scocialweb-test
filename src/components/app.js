@@ -4,6 +4,7 @@ import Login from './login'
 import Home from './home'
 import Register from './register'
 import Profile from './profile'
+import MessagesScreen from './messages'
 
 //REDUX
 import { connect } from 'react-redux'
@@ -78,6 +79,11 @@ class App extends Component {
           {this.props.slscreen === 'profile' && (
             <>
               <Profile />
+            </>
+          )}
+          {this.props.slscreen === 'messages' && (
+            <>
+              <MessagesScreen />
             </>
           )}
         </div>

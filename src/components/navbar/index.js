@@ -90,6 +90,7 @@ const Navbar = (props, { onLoad }) => {
             </a>
           </li>
           <li>
+            {/* eslint-disable-next-line */}
             <a
               href="#"
               style={
@@ -104,7 +105,15 @@ const Navbar = (props, { onLoad }) => {
           </li>
           <li>
             {/* eslint-disable-next-line */}
-            <a href="#" style={{ color: 'white' }}>
+            <a
+              href="#"
+              style={
+                props.slscreen === 'messages'
+                  ? { color: '#c30099' }
+                  : { color: 'white' }
+              }
+              onClick={() => props.handleSelectScreen('messages')}
+            >
               Messages
             </a>
           </li>
@@ -161,7 +170,15 @@ const Navbar = (props, { onLoad }) => {
           >
             Profile
           </a>
-          <a href="#" style={{ color: 'white' }}>
+          <a
+            href="#"
+            style={
+              props.slscreen === 'messages'
+                ? { color: '#c30099' }
+                : { color: 'white' }
+            }
+            onClick={() => props.handleSelectScreen('messages')}
+          >
             Messages
           </a>
           <a style={{ padding: '0' }}>
