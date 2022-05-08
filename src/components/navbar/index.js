@@ -218,7 +218,7 @@ const Navbar = (props, { onLoad }) => {
 
         <div id="main">
           <button id="openbtn" className="openbtn" onClick={() => openNav()}>
-            ☰ Open Sidebar
+            ☰ Menu
           </button>
         </div>
       </div>

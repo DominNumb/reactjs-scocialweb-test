@@ -169,7 +169,8 @@ li a {
 }
 
 .openbtn {
-  font-size: 20px;
+  font-size: 25px;
+  font-weight: 400;
   cursor: pointer;
   background-color: #12121200;
   color: rgba(212, 15, 234, 0.831);
