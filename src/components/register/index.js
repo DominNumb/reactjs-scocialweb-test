@@ -158,7 +158,7 @@ class Register extends Component {
     const handlePicSubmit = () => {
       const imageRef = ref(
         storage,
-        'users/' + this.state.useremail.toLowerCase() + '/image',
+        'users/' + this.state.useremail.toLowerCase() + '/profilePic',
       )
       uploadBytes(imageRef, this.state.userphoto)
         .then(() => {
