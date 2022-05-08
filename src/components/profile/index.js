@@ -3,6 +3,9 @@ import Navbar from '../navbar'
 import LoadingScreen from '../loading'
 import './profile.css'
 
+//MUI
+import EditIcon from '@mui/icons-material/Edit'
+
 //FIREBASE
 import {
   collection,
@@ -61,7 +64,7 @@ const Profile = (props, { onLoad }) => {
       <>
         <div>
           <div className="container">
-            <div className="LogoLabel">{username}</div>
+            <br />
             <img
               className="ProfileImage"
               decoding="async"
@@ -69,142 +72,11 @@ const Profile = (props, { onLoad }) => {
               src={userphoto}
               width="240px"
               height="240px"
-            />
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
-            <div>.</div>
+            ></img>
+            <div className="LogoLabel">{username}</div>
             <br />
-            <a>What are you looking for?!</a>
-            <br />
+
+            <hr color="#631199" />
             <br />
             <br />
             <br />
