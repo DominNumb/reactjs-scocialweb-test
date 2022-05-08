@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import './navbar.css'
 
 //REDUX
@@ -18,6 +18,9 @@ import { getAuth } from 'firebase/auth'
 
 //MAIN NAVBAR
 const Navbar = (props, { onLoad }) => {
+  const openBTN = useRef(0)
+  const mySidebar = useRef(0)
+
   const auth = getAuth()
   const app = initializeApp(props.firebaseConfig)
   const db = getFirestore(app)
@@ -65,14 +68,12 @@ const Navbar = (props, { onLoad }) => {
 
   //SIDEBAR
   function openNav() {
-    document.getElementById('mySidebar').style.width = '250px'
-    document.getElementById('main').style.marginLeft = '250px'
-    document.getElementById('openbtn').style.display = 'none'
+    mySidebar.current.style.width = '250px'
+    openBTN.current.style.display = 'none'
   }
   function closeNav() {
-    document.getElementById('mySidebar').style.width = '0'
-    document.getElementById('main').style.marginLeft = '0'
-    document.getElementById('openbtn').style.display = 'unset'
+    mySidebar.current.style.width = '0'
+    openBTN.current.style.display = 'unset'
   }
 
   //MAIN RETURN
@@ -147,12 +148,8 @@ const Navbar = (props, { onLoad }) => {
         </div>
       </ul>
       <div className="sidebarMain ShadowNavbar">
-        <div id="mySidebar" className="sidebar">
-          <a
-            href="javascript:void(0)"
-            className="closebtn"
-            onClick={() => closeNav()}
-          >
+        <div ref={mySidebar} className="sidebar">
+          <a href={'#'} className="closebtn" onClick={() => closeNav()}>
             ×
           </a>
           <a
@@ -186,7 +183,6 @@ const Navbar = (props, { onLoad }) => {
             Messages
           </a>
           <a style={{ padding: '0' }}>
-            {' '}
             <img
               style={{
                 marginTop: '100px',
@@ -216,8 +212,8 @@ const Navbar = (props, { onLoad }) => {
           </a>
         </div>
 
-        <div id="main">
-          <button id="openbtn" className="openbtn" onClick={() => openNav()}>
+        <div ref={openBTN}>
+          <button className="openbtn" onClick={() => openNav()}>
             ☰ Menu
           </button>
         </div>
