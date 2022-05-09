@@ -6,6 +6,16 @@ import { connect } from 'react-redux'
 
 //FIREBASE
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import {
+  collection,
+  query,
+  where,
+  getFirestore,
+  getDocs,
+  doc,
+  addDoc,
+} from 'firebase/firestore'
+import { initializeApp } from 'firebase/app'
 
 class Login extends Component {
   constructor(props) {
@@ -20,10 +30,40 @@ class Login extends Component {
 
   render() {
     const auth = getAuth()
+    const app = initializeApp(this.props.firebaseConfig)
+    const db = getFirestore(app)
 
+    //Check if its Username or Email
+    const handleEmailOrUser = async (email, password) => {
+      this.setState({ loading: true })
+      if (email.includes('@')) {
+        console.log('[INFO] You are using email to Login.')
+        handleLogin(email, password)
+      } else {
+        console.log('[INFO] You are using username to Login.')
+        const usersRef = collection(db, 'users')
+        const q = query(usersRef, where('username', '==', email.toLowerCase()))
+        await getDocs(q).then((response) => {
+          const usrs = response.docs.map((doc) => ({
+            data: doc.data(),
+            id: doc.id,
+          }))
+          const vysledek = usrs.map((user) => user.data.username)
+          const realEmailMap = usrs.map((user) => user.data.email)
+          const realEmail = '' + realEmailMap //Will make it string from the array kek
+          if (vysledek.toString() === email.toLowerCase()) {
+            console.log('[INFO] User was found.')
+            handleLogin(realEmail, password)
+          } else {
+            console.log('[ERROR] User not found!')
+            this.setState({ loading: false })
+            this.setState({ errormsg: 'User not found!' })
+          }
+        })
+      }
+    }
     //Login function
     const handleLogin = async (email, password) => {
-      this.setState({ loading: true })
       await signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user
@@ -80,7 +120,7 @@ class Login extends Component {
                 this.setState({ useremail: event.target.value })
               }
               type="text"
-              placeholder="Type email"
+              placeholder="Type email or username"
             />
             <br />
             <input
@@ -103,7 +143,7 @@ class Login extends Component {
               className="button-27"
               style={{ width: 200 }}
               onClick={() =>
-                handleLogin(this.state.useremail, this.state.userpassword)
+                handleEmailOrUser(this.state.useremail, this.state.userpassword)
               }
             >
               Login
